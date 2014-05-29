@@ -1,0 +1,18 @@
+package com.aakash.vlabs;
+
+public class JSONdata {
+
+    static String[] Headlines = {
+        "Physics",
+        "Chemistry",
+        "Mathematics",
+        "Biology"
+    };
+
+    static String[] Articles = {
+        "Article\n\nThis is the Physics section",
+        "Article\n\nThis is the Chemistry section",
+        "Article\n\nThis is the Mathematics section",
+        "Article\n\nThis is the Biology section",
+        };
+}
