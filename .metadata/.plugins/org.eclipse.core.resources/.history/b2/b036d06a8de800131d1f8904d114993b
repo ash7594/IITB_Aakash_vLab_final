@@ -1,0 +1,18 @@
+package com.aakash.vlabs;
+
+public class JSONdata {
+
+    static String[] Subjects = {
+        "Physics",
+        "Chemistry",
+        "Mathematics",
+        "Biology"
+    };
+
+    static String[] Experiments = {
+        "Experiment 1 - P",
+        "Experiment 2 - P",
+        "Experiment 3 - P",
+        "Experiment 4 - P",
+        };
+}

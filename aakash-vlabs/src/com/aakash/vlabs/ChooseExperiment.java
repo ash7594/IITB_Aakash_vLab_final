@@ -23,12 +23,12 @@ public class ChooseExperiment extends FragmentActivity
 
     public void onArticleSelected(int position) {
        
-        ExperimentList articleFrag = (ExperimentList)
-                getSupportFragmentManager().findFragmentById(R.id.article_fragment);
+        ExperimentList experimentFrag = (ExperimentList)
+                getSupportFragmentManager().findFragmentById(R.id.experiment_list);
 
-        if (articleFrag != null) {
+        if (experimentFrag != null) {
 
-            articleFrag.updateArticleView(position);
+            experimentFrag.updateArticleView(position);
 
         }
     }
