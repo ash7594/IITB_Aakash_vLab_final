@@ -9,7 +9,7 @@
     <fragment android:name="com.aakash.vlabs.SubjectList"
               android:id="@+id/subject_list"
               android:layout_width="0dp"
-              android:layout_weight="1"
+              android:layout_weight="1"	
               android:layout_height="fill_parent" />
 
     <fragment android:name="com.aakash.vlabs.ExperimentList"
