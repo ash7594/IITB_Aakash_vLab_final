@@ -45,25 +45,25 @@ public class CustomAdapter extends BaseAdapter{
         if (v == null)
         {
         	LayoutInflater vi = (LayoutInflater)theCont.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = vi.inflate(R.layout.custom_list, null);
+            v = vi.inflate(R.layout.custom_list_real, null);
         }
 
           	ImageView icon = (ImageView) v.findViewById(R.id.icon);
             TextView desc = (TextView) v.findViewById(R.id.desc);
-            ImageView p1 = (ImageView) v.findViewById(R.id.p1);
-            ImageView p2 = (ImageView) v.findViewById(R.id.p2);
-            ImageView p3 = (ImageView) v.findViewById(R.id.p3);
-            ImageView p4 = (ImageView) v.findViewById(R.id.p4);
-            ImageView p5 = (ImageView) v.findViewById(R.id.p5);
+//            ImageView p1 = (ImageView) v.findViewById(R.id.p1);
+//            ImageView p2 = (ImageView) v.findViewById(R.id.p2);
+//            ImageView p3 = (ImageView) v.findViewById(R.id.p3);
+//            ImageView p4 = (ImageView) v.findViewById(R.id.p4);
+//            ImageView p5 = (ImageView) v.findViewById(R.id.p5);
 
             ExperimentDetails exp = theData.get(position);
             icon.setImageResource(exp.icon);
             desc.setText(exp.desc);
-            p1.setImageResource(exp.p1);
-            p2.setImageResource(exp.p2);
-            p3.setImageResource(exp.p3);
-            p4.setImageResource(exp.p4);
-            p4.setImageResource(exp.p5);                        
+//            p1.setImageResource(exp.p1);
+//            p2.setImageResource(exp.p2);
+//            p3.setImageResource(exp.p3);
+//            p4.setImageResource(exp.p4);
+//            p4.setImageResource(exp.p5);                        
                        
             return v;
 	}

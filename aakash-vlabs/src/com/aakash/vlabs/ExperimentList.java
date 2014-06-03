@@ -1,6 +1,11 @@
 package com.aakash.vlabs;
 
+import java.util.ArrayList;
+
 import android.support.v4.app.Fragment;
+import android.annotation.TargetApi;
+import android.app.ListFragment;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +22,7 @@ public class ExperimentList extends Fragment {
     ListView listview;
 	View view;
 	ArrayAdapter<String> adapter;
+	private ChooseExperiment thecon;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, 
@@ -29,8 +35,53 @@ public class ExperimentList extends Fragment {
         view = inflater.inflate(R.layout.experiment_list, container, false);
         listview =(ListView)view.findViewById(R.id.article);
         
-        adapter = new ArrayAdapter<String>(getActivity(), R.layout.custom_list,JSONdata.Experiments[mCurrentPosition]); 
-        listview.setAdapter(adapter);  
+        //adapter = new ArrayList<ExperimentDetails>();
+        adapter = new ArrayAdapter<String>(getActivity(), R.layout.custom_list, JSONdata.Experiments[0]);    
+        
+        /*ExperimentDetails detail;
+        
+        detail = new ExperimentDetails();
+        detail.setIcon(R.drawable.ic_launcher);
+        detail.setDesc("this is");
+//        detail.setP1(R.drawable.ic_launcher);
+//        detail.setP2(R.drawable.ic_launcher);
+//        detail.setP3(R.drawable.ic_launcher);
+//        detail.setP4(R.drawable.ic_launcher);
+//        detail.setP5(R.drawable.ic_launcher);
+        adapter.add(detail);
+        /*
+        detail = new ExperimentDetails();
+        detail.setIcon(R.drawable.ic_launcher);
+        detail.setDesc("this is");
+        detail.setP1(R.drawable.ic_launcher);
+        detail.setP2(R.drawable.ic_launcher);
+        detail.setP3(R.drawable.ic_launcher);
+        detail.setP4(R.drawable.ic_launcher);
+        detail.setP5(R.drawable.ic_launcher);
+        adapter.add(detail);
+        
+        detail = new ExperimentDetails();
+        detail.setIcon(R.drawable.ic_launcher);
+        detail.setDesc("this is");
+        detail.setP1(R.drawable.ic_launcher);
+        detail.setP2(R.drawable.ic_launcher);
+        detail.setP3(R.drawable.ic_launcher);
+        detail.setP4(R.drawable.ic_launcher);
+        detail.setP5(R.drawable.ic_launcher);
+        adapter.add(detail);
+        
+        detail = new ExperimentDetails();
+        detail.setIcon(R.drawable.ic_launcher);
+        detail.setDesc("this is");
+        detail.setP1(R.drawable.ic_launcher);
+        detail.setP2(R.drawable.ic_launcher);
+        detail.setP3(R.drawable.ic_launcher);
+        detail.setP4(R.drawable.ic_launcher);
+        detail.setP5(R.drawable.ic_launcher);
+        adapter.add(detail);*/
+        
+        listview.setAdapter(adapter);
+        		//new CustomAdapter(adapter,thecon));  
         return view;
     }
 
@@ -54,8 +105,52 @@ public class ExperimentList extends Fragment {
         //TextView article = (TextView) getActivity().findViewById(R.id.article);
         //article.setText(JSONdata.Experiments[position]);
         mCurrentPosition = position;
-        adapter = new ArrayAdapter<String>(getActivity(), R.layout.custom_list,JSONdata.Experiments[mCurrentPosition]); 
+        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, JSONdata.Experiments[mCurrentPosition]);
+        
+        /*ExperimentDetails detail;
+        
+        detail = new ExperimentDetails();
+        detail.setIcon(R.drawable.ic_launcher);
+        detail.setDesc("this is");
+//        detail.setP1(R.drawable.ic_launcher);
+//        detail.setP2(R.drawable.ic_launcher);
+//        detail.setP3(R.drawable.ic_launcher);
+//        detail.setP4(R.drawable.ic_launcher);
+//        detail.setP5(R.drawable.ic_launcher);
+        adapter.add(detail);
+        /*
+        detail = new ExperimentDetails();
+        detail.setIcon(R.drawable.ic_launcher);
+        detail.setDesc("this is");
+        detail.setP1(R.drawable.ic_launcher);
+        detail.setP2(R.drawable.ic_launcher);
+        detail.setP3(R.drawable.ic_launcher);
+        detail.setP4(R.drawable.ic_launcher);
+        detail.setP5(R.drawable.ic_launcher);
+        adapter.add(detail);
+        
+        detail = new ExperimentDetails();
+        detail.setIcon(R.drawable.ic_launcher);
+        detail.setDesc("this is");
+        detail.setP1(R.drawable.ic_launcher);
+        detail.setP2(R.drawable.ic_launcher);
+        detail.setP3(R.drawable.ic_launcher);
+        detail.setP4(R.drawable.ic_launcher);
+        detail.setP5(R.drawable.ic_launcher);
+        adapter.add(detail);
+        
+        detail = new ExperimentDetails();
+        detail.setIcon(R.drawable.ic_launcher);
+        detail.setDesc("this is");
+        detail.setP1(R.drawable.ic_launcher);
+        detail.setP2(R.drawable.ic_launcher);
+        detail.setP3(R.drawable.ic_launcher);
+        detail.setP4(R.drawable.ic_launcher);
+        detail.setP5(R.drawable.ic_launcher);
+        adapter.add(detail);*/
+        
         listview.setAdapter(adapter);
+        //new CustomAdapter(adapter,thecon));
         //listview.setBackgroundColor(Color.BLACK);
     }
 
@@ -65,4 +160,9 @@ public class ExperimentList extends Fragment {
 
         outState.putInt(ARG_POSITION, mCurrentPosition);
     }
+
+	//public void setcon(ChooseExperiment chooseExperiment) {
+		// TODO Auto-generated method stub
+		//thecon = chooseExperiment;
+	//}
 }
