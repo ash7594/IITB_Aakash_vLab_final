@@ -1,0 +1,67 @@
+package com.aakash.vlabs;
+
+import java.util.ArrayList;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+
+public class CustomAdapter extends BaseAdapter{
+	
+	private ArrayList<ExperimentDetails> theData;
+    Context theCont;
+    
+    CustomAdapter (ArrayList<ExperimentDetails> data, Context c){
+        theData = data;
+        theCont = c;
+    }
+	
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return theData.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return theData.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		// TODO Auto-generated method stub
+		View v = convertView;
+        if (v == null)
+        {
+        	LayoutInflater vi = (LayoutInflater)theCont.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            v = vi.inflate(R.layout.custom_list, null);
+        }
+
+          	ImageView icon = (ImageView) v.findViewById(R.id.icon);
+            TextView desc = (TextView)v.findViewById(R.id.desc);
+            ImageView p1 = (ImageView) v.findViewById(R.id.icon);
+            ImageView p2 = (ImageView) v.findViewById(R.id.icon);
+            ImageView p3 = (ImageView) v.findViewById(R.id.icon);
+            ImageView p4 = (ImageView) v.findViewById(R.id.icon);
+            ImageView p5 = (ImageView) v.findViewById(R.id.icon);
+
+            MessageDetails msg = _data.get(position);
+            image.setImageResource(msg.icon);
+            fromView.setText(msg.from);
+            subView.setText("Subject: "+msg.sub);
+            descView.setText(msg.desc);
+            timeView.setText(msg.time);                             
+                       
+            return v;
+	}
+
+}

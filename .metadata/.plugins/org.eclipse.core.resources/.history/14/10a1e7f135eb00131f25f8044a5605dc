@@ -1,0 +1,15 @@
+package com.aakash.vlabs;
+
+public class ExperimentDetails {
+	
+	int icon;
+	String desc;
+	int p1;
+	int p2;
+	int p3;
+	int p4;
+	int p5;
+	
+	
+	
+}
