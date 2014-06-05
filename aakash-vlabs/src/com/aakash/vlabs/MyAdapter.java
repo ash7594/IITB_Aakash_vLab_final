@@ -31,9 +31,11 @@ public class MyAdapter extends ArrayAdapter<String>{
             rowView = inflater.inflate(R.layout.custom_list,parent, false);
         }
 		
-		TextView textView = (TextView) rowView.findViewById(R.id.desc);
+		TextView textView1 = (TextView) rowView.findViewById(R.id.headin);
+		TextView textView2 = (TextView) rowView.findViewById(R.id.desc);
 	    ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-	    textView.setText(values[position]);
+	    textView1.setText(values[position]);
+	    textView2.setText(values[position]);
 	    
 	    //String s = values[position];
 //	    if (s.startsWith("Windows7") || s.startsWith("iPhone")
