@@ -1,5 +1,7 @@
 package com.aakash.vlabs;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +13,13 @@ import android.widget.TextView;
 public class MyAdapter extends ArrayAdapter<String>{
 	
 	private Context context;
-	private String[] values;
+	private ArrayList<String> values;
+	static public int j = -1;
 
-	public MyAdapter(Context context, String[] values) {
-	    super(context, R.layout.custom_list, values);
+	public MyAdapter(Context context, ArrayList<String> arr) {
+	    super(context, R.layout.custom_list, arr);
 	    this.context = context;
-	    this.values = values;
+	    this.values = arr;
 	  }
 	
 	@Override
@@ -34,16 +37,11 @@ public class MyAdapter extends ArrayAdapter<String>{
 		TextView textView1 = (TextView) rowView.findViewById(R.id.headin);
 		TextView textView2 = (TextView) rowView.findViewById(R.id.desc);
 	    ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-	    textView1.setText(values[position]);
-	    textView2.setText(values[position]);
+	    textView1.setText(values.get(position));
+
+	    textView2.setText(JSONdata.ExperimentsDesc.get(j).get(position));
 	    
-	    //String s = values[position];
-//	    if (s.startsWith("Windows7") || s.startsWith("iPhone")
-//	        || s.startsWith("Solaris")) {
-//	      imageView.setImageResource(R.drawable.ic_launcher);
-//	    } else {
 	    imageView.setImageResource(R.drawable.ic_launcher);
-//	    }
 
 	    return rowView;
 	  }

@@ -32,8 +32,8 @@ public class ExperimentList extends Fragment {
         
         //adapter = new ArrayAdapter<String>(getActivity(),R.layout.custom_list, R.id.desc,JSONdata.Experiments[mCurrentPosition]); 
         //listview.setAdapter(adapter);
-        
-        adapter = new MyAdapter(getActivity(), JSONdata.Experiments[mCurrentPosition]);
+        MyAdapter.j = mCurrentPosition;
+        adapter = new MyAdapter(getActivity(), JSONdata.ExperimentsHead.get(mCurrentPosition));
         listview.setAdapter(adapter);
         
         return view;
@@ -61,7 +61,8 @@ public class ExperimentList extends Fragment {
         mCurrentPosition = position;
         //adapter = new ArrayAdapter<String>(getActivity(),R.layout.custom_list, R.id.desc,JSONdata.Experiments[mCurrentPosition]); 
         //listview.setAdapter(adapter);
-        adapter = new MyAdapter(getActivity(), JSONdata.Experiments[mCurrentPosition]);
+        MyAdapter.j = mCurrentPosition;
+        adapter = new MyAdapter(getActivity(), JSONdata.ExperimentsHead.get(mCurrentPosition));
         listview.setAdapter(adapter);
         
         //listview.setBackgroundColor(Color.BLACK);
