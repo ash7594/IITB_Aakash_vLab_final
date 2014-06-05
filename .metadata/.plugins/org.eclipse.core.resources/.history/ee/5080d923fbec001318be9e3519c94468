@@ -5,7 +5,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MainActivity extends Activity{
 	
@@ -42,7 +40,6 @@ public class MainActivity extends Activity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				parseOnline();
-				
 			}
 		});
         
@@ -51,18 +48,18 @@ public class MainActivity extends Activity{
 	public void parseOnline() {
 		
 		JSONParser jParser = new JSONParser(); 
-		
+		int hello = 1;
 		// get JSON data from URL 
-		json = jParser.getJSONFromUrl(url);
+		try {
+			json = jParser.getJSONFromUrl(url);
+		} catch(Exception e) {
+			hello = 0;
+			e.printStackTrace();
+		}
 		
-		if(json == null) {
-			Context context = getApplicationContext();
-			CharSequence text = "No Internet Connection";
-			int duration = Toast.LENGTH_SHORT;
-
-			Toast.makeText(context, text, duration).show();
-			
-		} else {
+		if(hello==0)
+			System.out.println("yo");
+		else {
 		for (int i = 0; i < json.length(); i++) { 
 			
 			try {
@@ -85,7 +82,6 @@ public class MainActivity extends Activity{
 		}
 		moveOnline();
 		}
-		
 	}
 	
 	public void moveOnline() {

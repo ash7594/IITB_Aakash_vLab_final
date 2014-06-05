@@ -57,7 +57,7 @@ public class MainActivity extends Activity{
 		
 		if(json == null) {
 			Context context = getApplicationContext();
-			CharSequence text = "No Internet Connection";
+			CharSequence text = "Hello toast!";
 			int duration = Toast.LENGTH_SHORT;
 
 			Toast.makeText(context, text, duration).show();
