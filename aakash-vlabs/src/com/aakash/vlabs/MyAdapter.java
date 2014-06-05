@@ -22,19 +22,26 @@ public class MyAdapter extends ArrayAdapter<String>{
 	@Override
 	  public View getView(int position, View convertView, ViewGroup parent) {
 	    
-		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	    View rowView = inflater.inflate(R.layout.custom_list, parent, false);
-	    TextView textView = (TextView) rowView.findViewById(R.id.desc);
+		View rowView = convertView;
+		//LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	    //View rowView = inflater.inflate(R.layout.custom_list, parent, false);
+	    
+		if (rowView == null) {
+			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            rowView = inflater.inflate(R.layout.custom_list,parent, false);
+        }
+		
+		TextView textView = (TextView) rowView.findViewById(R.id.desc);
 	    ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
 	    textView.setText(values[position]);
 	    
-	    String s = values[position];
-	    if (s.startsWith("Windows7") || s.startsWith("iPhone")
-	        || s.startsWith("Solaris")) {
-	      imageView.setImageResource(R.drawable.ic_launcher);
-	    } else {
-	      imageView.setImageResource(R.drawable.ic_launcher);
-	    }
+	    //String s = values[position];
+//	    if (s.startsWith("Windows7") || s.startsWith("iPhone")
+//	        || s.startsWith("Solaris")) {
+//	      imageView.setImageResource(R.drawable.ic_launcher);
+//	    } else {
+	    imageView.setImageResource(R.drawable.ic_launcher);
+//	    }
 
 	    return rowView;
 	  }
