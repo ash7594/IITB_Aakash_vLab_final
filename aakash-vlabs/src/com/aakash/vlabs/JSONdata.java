@@ -1,14 +1,51 @@
 package com.aakash.vlabs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class JSONdata {
 
-    static String[] Subjects = {
+    /*static String[] Subjects = {
         "Physics",
         "Chemistry",
         "Mathematics",
         "Biology"
-    };
-
+    };*/
+	
+	static int subjectNo = -1;
+	static int ExperimentNo = -1;
+	
+	static ArrayList<String> Subjects = new ArrayList<String>();
+	//static String[][] Experiments = new String[10][20];
+	//ArrayList<String>[] exp = new ArrayList<String>()[10];
+	static ArrayList<ArrayList<String>> ExperimentsHead = new ArrayList<ArrayList<String>>();
+	static ArrayList<String> SubExpHead = new ArrayList<String>();
+	
+	static ArrayList<ArrayList<String>> ExperimentsDesc = new ArrayList<ArrayList<String>>();
+	static ArrayList<String> SubExpDesc = new ArrayList<String>();
+	
+	public static void setSubject(String sub) {
+		
+		Subjects.add(sub);
+		subjectNo++;
+		//SubExp.add("Begin_List");
+		SubExpHead = new ArrayList<String>();
+		ExperimentsHead.add(SubExpHead);
+		
+		SubExpDesc = new ArrayList<String>();
+		ExperimentsDesc.add(SubExpDesc);
+		//SubExp.clear();
+	}
+	
+	public static void setExperimentHead(int index, String str) {
+		ExperimentsHead.get(index).add(str);
+		ExperimentNo++;
+	}
+	
+	public static void setExperimentDesc(int index, String str) {
+		ExperimentsDesc.get(index).add(str);
+	}
+	/*
     static String[][] Experiments = {
     	{"Experiment 1 - P",
          "Experiment 2 - P",
@@ -61,6 +98,6 @@ public class JSONdata {
           "Experiment 10 - B",
           "Experiment 11 - B",
           "Experiment 12 - B"},                 
-    };
+    };*/
     
 }
