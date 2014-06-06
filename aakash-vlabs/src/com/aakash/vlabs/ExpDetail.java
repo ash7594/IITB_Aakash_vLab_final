@@ -4,6 +4,6 @@ public class ExpDetail {
 	
 	String headin;
 	String desc;
-	int icon;
+	String icon;
 
 }

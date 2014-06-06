@@ -3,8 +3,10 @@ package com.aakash.vlabs;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -42,7 +44,25 @@ public class MyAdapter extends ArrayAdapter<String>{
 	    textView2.setText(JSONdata.ExperimentsDesc.get(j).get(position));
 	    
 	    imageView.setImageResource(R.drawable.ic_launcher);
-
+	    
+//	    rowView.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				Class ourClass = Class.forName("com.aakash.vlabs.ShowExp");
+//				
+//				Intent intent = new Intent(getContext(), ourClass);
+//
+////				intent.putExtra("class_no", class_no);
+////				intent.putExtra("subject", subject);
+////				intent.putExtra("exp_name", exp_name);
+////				intent.putExtra("exp_no", exp_no);
+//				startActivity(intent);
+//				
+//			}
+//		});
+	    
 	    return rowView;
 	  }
 

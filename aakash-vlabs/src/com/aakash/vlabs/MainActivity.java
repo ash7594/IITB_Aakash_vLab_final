@@ -19,7 +19,8 @@ public class MainActivity extends Activity{
 	
 	JSONArray json = null;
 	private static String url = "http://www.cse.iitb.ac.in/~aneesh14/file2.json";
-	
+	JSONObject classSubList;
+	JSONArray json1 = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -63,17 +64,34 @@ public class MainActivity extends Activity{
 			Toast.makeText(context, text, duration).show();
 			
 		} else {
-		for (int i = 0; i < json.length(); i++) { 
+		
+		try {
+			classSubList = json.getJSONObject(0);
+			json1 = classSubList.getJSONArray("subject");
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	
+		
+		JSONdata.Subjects.clear();
+		JSONdata.ExperimentsHead.clear();
+		JSONdata.ExperimentsDesc.clear();
+		JSONdata.SubExpHead.clear();
+		JSONdata.SubExpDesc.clear();
+		JSONdata.ExperimentNo = -1;
+		JSONdata.subjectNo = -1;
+		
+		for (int i = 0; i < json1.length(); i++) { 
 			
 			try {
-				JSONObject subList = json.getJSONObject(i);
+				JSONObject subList = json1.getJSONObject(i);
 				JSONdata.setSubject(subList.getString("subject_name"));
 				
 				for(int j = 0; j < subList.getJSONArray("exps").length(); j++) {
 					
 					JSONObject subExp = subList.getJSONArray("exps").getJSONObject(j);
 					JSONdata.setExperimentHead(i,subExp.getString("name"));
-					JSONdata.setExperimentDesc(i,subExp.getString("descritption"));
+					JSONdata.setExperimentDesc(i,subExp.getString("description"));
 					
 				}
 				

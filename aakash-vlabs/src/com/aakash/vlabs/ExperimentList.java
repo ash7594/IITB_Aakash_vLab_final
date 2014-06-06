@@ -2,12 +2,15 @@ package com.aakash.vlabs;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,6 +38,29 @@ public class ExperimentList extends Fragment {
         MyAdapter.j = mCurrentPosition;
         adapter = new MyAdapter(getActivity(), JSONdata.ExperimentsHead.get(mCurrentPosition));
         listview.setAdapter(adapter);
+        
+//        listview.setOnItemClickListener(new OnItemClickListener() {
+//
+//			@Override
+//			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//				// TODO Auto-generated method stub
+//				try {
+//					Class ourClass = Class.forName("com.aakash.vlabs.ShowExp");
+//				} catch (ClassNotFoundException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				
+//				Intent intent = new Intent();
+//
+////				intent.putExtra("class_no", class_no);
+////				intent.putExtra("subject", subject);
+////				intent.putExtra("exp_name", exp_name);
+////				intent.putExtra("exp_no", exp_no);
+//				startActivity(intent);
+//				
+//			}
+//        });
         
         return view;
     }
