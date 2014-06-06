@@ -59,8 +59,8 @@ public class MyAdapter extends ArrayAdapter<String>{
 				//intent.putExtra("class_no", JSONdata.StudentClass);
 				//intent.putExtra("subject", JSONdata.Subjects.get(SubPosition));
 				//intent.putExtra("exp_name", values.get(position));
-				//intent.putExtra("exp_no", JSONdata.ExperimentsNum.get(j).get(position));
-				Toast.makeText(parent.getContext(), JSONdata.StudentClass + ", " + JSONdata.ExperimentsNum.get(j).get(position) + ", " + JSONdata.Subjects.get(SubPosition) + ", " + values.get(position), Toast.LENGTH_SHORT).show();
+				//intent.putExtra("exp_no", exp_no);
+				Toast.makeText(parent.getContext(), "view clicked: "+ JSONdata.Subjects.get(SubPosition) + " , " + values.get(position), Toast.LENGTH_SHORT).show();
 
 				//parent.getContext().startActivity(intent);
 				

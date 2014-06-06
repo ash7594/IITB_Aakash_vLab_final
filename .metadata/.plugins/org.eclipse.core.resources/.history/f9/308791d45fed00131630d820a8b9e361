@@ -58,7 +58,7 @@ public class JSONdata {
 		StudentClass = string;
 	}
 
-	public static void setExperimentNum(int index, String str) {
+	public static void setExperimentNum(int i, String string) {
 		// TODO Auto-generated method stub
 		ExperimentsNum.get(index).add(str);
 	}

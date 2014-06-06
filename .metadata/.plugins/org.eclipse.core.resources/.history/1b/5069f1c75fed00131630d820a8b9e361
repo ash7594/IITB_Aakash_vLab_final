@@ -25,9 +25,6 @@ public class JSONdata {
 	static ArrayList<ArrayList<String>> ExperimentsDesc = new ArrayList<ArrayList<String>>();
 	static ArrayList<String> SubExpDesc = new ArrayList<String>();
 	
-	static ArrayList<ArrayList<String>> ExperimentsNum = new ArrayList<ArrayList<String>>();
-	static ArrayList<String> SubExpNum = new ArrayList<String>();
-	
 	public static void setSubject(String sub) {
 		
 		Subjects.add(sub);
@@ -38,9 +35,6 @@ public class JSONdata {
 		
 		SubExpDesc = new ArrayList<String>();
 		ExperimentsDesc.add(SubExpDesc);
-		
-		SubExpNum = new ArrayList<String>();
-		ExperimentsNum.add(SubExpNum);
 		//SubExp.clear();
 	}
 	
@@ -56,11 +50,6 @@ public class JSONdata {
 	public static void setStudentClass(String string) {
 		// TODO Auto-generated method stub
 		StudentClass = string;
-	}
-
-	public static void setExperimentNum(int index, String str) {
-		// TODO Auto-generated method stub
-		ExperimentsNum.get(index).add(str);
 	}
     
 }

@@ -93,7 +93,7 @@ public class MainActivity extends Activity{
 					JSONObject subExp = subList.getJSONArray("exps").getJSONObject(j);
 					JSONdata.setExperimentHead(i,subExp.getString("name"));
 					JSONdata.setExperimentDesc(i,subExp.getString("description"));
-					JSONdata.setExperimentNum(i,subExp.getString("exp_no"));
+					
 				}
 				
 			} catch (JSONException e) {
