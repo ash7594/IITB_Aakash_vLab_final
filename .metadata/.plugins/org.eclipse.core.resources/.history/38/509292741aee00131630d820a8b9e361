@@ -73,8 +73,6 @@ public class MyAdapter extends ArrayAdapter<String>{
 				JSONParser jParser = new JSONParser(); 
 				json = jParser.getJSONFromUrl(url);
 				
-				allVideos = "";
-				
 				if(json != null) {
 				
 					try {
