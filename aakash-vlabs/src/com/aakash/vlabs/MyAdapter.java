@@ -36,6 +36,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 	private String ExpSimulation;
 	private String ExpQuiz;
 	private String ExpResource;
+	private String ExpDescription;
 	
 	public MyAdapter(Context context, ArrayList<String> arr, int mCurrentPosition) {
 	    super(context, R.layout.custom_list, arr);
@@ -102,37 +103,42 @@ public class MyAdapter extends ArrayAdapter<String>{
 						ExpSimulation = thisExp.getString("simulation");
 						ExpQuiz = thisExp.getString("quiz");
 						ExpResource = thisExp.getString("resource");
+						ExpDescription = JSONdata.ExperimentsDesc.get(j).get(position); 
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}	
 					
-					//Intent intent=new Intent(parent.getContext(), MainActivity.class);   
+					Intent intent=new Intent(parent.getContext(), ShowExp.class);   
 					dataSend = "";
-					//intent.putExtra("class_no", JSONdata.StudentClass);
+					intent.putExtra("class_no", JSONdata.StudentClass);
 					dataSend += "class_no: " + JSONdata.StudentClass + "\n";
-					//intent.putExtra("subject", JSONdata.Subjects.get(SubPosition));
+					intent.putExtra("subject", JSONdata.Subjects.get(SubPosition));
 					dataSend += "subject: " + JSONdata.Subjects.get(SubPosition) + "\n";
-					//intent.putExtra("exp_name", values.get(position));
+					intent.putExtra("exp_name", values.get(position));
 					dataSend += "exp_name: " + values.get(position) + "\n";
-					//intent.putExtra("exp_no", JSONdata.ExperimentsNum.get(j).get(position));
+					intent.putExtra("exp_no", JSONdata.ExperimentsNum.get(j).get(position));
 					dataSend += "exp_no: " + JSONdata.ExperimentsNum.get(j).get(position) + "\n";
-					//intent.putExtra("theory", thisExp.getString("theory"));
+					intent.putExtra("theory_url", ExpTheory);
 					dataSend += "theory: " + ExpTheory + "\n";
-					//intent.putExtra("procedure", thisExp.getString("procedure"));
+					intent.putExtra("procedure_url", ExpDescription);
+					dataSend += "description: " + ExpDescription  + "\n";
+					intent.putExtra("exp_desc", JSONdata.ExperimentsDesc.get(j).get(position));
 					dataSend += "procedure: " + ExpProcedure + "\n";
-					//intent.putExtra("simulation", thisExp.getString("simulation"));
+					intent.putExtra("simulation_url", ExpSimulation);
 					dataSend += "simulation: " + ExpSimulation + "\n";
-					//intent.putExtra("quiz", thisExp.getString("quiz"));
+					intent.putExtra("quiz_url", ExpQuiz);
 					dataSend += "quiz: " + ExpQuiz + "\n";
-					//intent.putExtra("resource", thisExp.getString("resource"));
+					intent.putExtra("resource_url", ExpResource);
 					dataSend += "resource: " + ExpResource + "\n";
-					//intent.putExtra("video", allVideos);
+					intent.putExtra("video_urls", allVideos);
 					dataSend += "video: " + allVideos;
 					
 					Toast.makeText(parent.getContext(), dataSend, Toast.LENGTH_SHORT).show();
 				
-					//parent.getContext().startActivity(intent);
+					parent.getContext().startActivity(intent);
+					//START ACTIVITY
+					
 				} else {
 					
 					Toast.makeText(parent.getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
