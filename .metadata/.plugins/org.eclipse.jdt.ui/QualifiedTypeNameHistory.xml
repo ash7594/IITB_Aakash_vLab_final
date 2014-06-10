@@ -16,8 +16,6 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="org.json.JSONObject"/>
-<fullyQualifiedTypeName name="com.aakash.vlabs.R.id"/>
-<fullyQualifiedTypeName name="android.widget.Button"/>
 <fullyQualifiedTypeName name="android.os.StrictMode"/>
 <fullyQualifiedTypeName name="com.aakash.vlabs.ExpDetail"/>
 <fullyQualifiedTypeName name="com.aakash.vlabs.MyAdapter"/>
@@ -26,4 +24,8 @@
 <fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="android.content.Intent"/>
 <fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="com.aakash.vlabs.R.id"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="android.os.Environment"/>
 </qualifiedTypeNameHistroy>

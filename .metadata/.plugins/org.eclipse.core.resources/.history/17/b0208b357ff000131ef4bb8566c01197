@@ -66,7 +66,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 	    Button offline = (Button) rowView.findViewById(R.id.offline);
 	    textView1.setText(values.get(position));
 
-	    //offline.setVisibility(View.VISIBLE);
+	    offline.setVisibility(View.INVISIBLE);
 	    textView2.setText(JSONdata.ExperimentsDesc.get(j).get(position));
 	    
 	    imageView.setImageResource(R.drawable.ic_launcher);
@@ -75,7 +75,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 	    File myFile = new File(extStore.getAbsolutePath() + "/aakash-vlabs/9_Physics_21.txt");
 
 	    if(myFile.exists()){
-	        //offline.setVisibility(View.VISIBLE);
+	        offline.setVisibility(View.VISIBLE);
 	    }
 	    
 	    rowView.setOnClickListener(new OnClickListener() {
