@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 public class MyAdapter extends ArrayAdapter<String>{
 	
-	private String storage_status;
 	private Context context;
 	private ArrayList<String> values;
 	static public int j = -1;
@@ -76,7 +75,6 @@ public class MyAdapter extends ArrayAdapter<String>{
 	    File myFile = new File(extStore.getAbsolutePath() + "/aakash-vlabs/"+JSONdata.StudentClass+"_"+JSONdata.Subjects.get(SubPosition)+"_"+JSONdata.ExperimentsNum.get(j).get(position)+".txt");
 
 	    if(myFile.exists()){
-	    	storage_status = "yes";
 	        offline.setVisibility(View.VISIBLE);
 	        
 	        offline.setOnClickListener(new OnClickListener() {
@@ -86,8 +84,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 					// TODO Auto-generated method stub
 					Intent intent=new Intent(parent.getContext(), ShowExp.class);   
 					
-					intent.putExtra("saved_status", storage_status);
-					intent.putExtra("view_mode", "offline");
+					intent.putExtra("offline", "true");
 					intent.putExtra("class_no", JSONdata.StudentClass);
 					intent.putExtra("subject", JSONdata.Subjects.get(SubPosition));
 					intent.putExtra("exp_name", values.get(position));
@@ -146,8 +143,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 					
 					Intent intent=new Intent(parent.getContext(), ShowExp.class);   
 					dataSend = "";
-					intent.putExtra("saved_status", storage_status);
-					intent.putExtra("view_mode", "online");
+					intent.putExtra("offline", "false");
 					intent.putExtra("class_no", JSONdata.StudentClass);
 					dataSend += "class_no: " + JSONdata.StudentClass + "\n";
 					intent.putExtra("subject", JSONdata.Subjects.get(SubPosition));

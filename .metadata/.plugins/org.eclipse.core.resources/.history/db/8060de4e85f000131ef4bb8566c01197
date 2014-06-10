@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 public class MyAdapter extends ArrayAdapter<String>{
 	
-	private String storage_status;
 	private Context context;
 	private ArrayList<String> values;
 	static public int j = -1;
@@ -76,7 +75,6 @@ public class MyAdapter extends ArrayAdapter<String>{
 	    File myFile = new File(extStore.getAbsolutePath() + "/aakash-vlabs/"+JSONdata.StudentClass+"_"+JSONdata.Subjects.get(SubPosition)+"_"+JSONdata.ExperimentsNum.get(j).get(position)+".txt");
 
 	    if(myFile.exists()){
-	    	storage_status = "yes";
 	        offline.setVisibility(View.VISIBLE);
 	        
 	        offline.setOnClickListener(new OnClickListener() {
@@ -86,8 +84,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 					// TODO Auto-generated method stub
 					Intent intent=new Intent(parent.getContext(), ShowExp.class);   
 					
-					intent.putExtra("saved_status", storage_status);
-					intent.putExtra("view_mode", "offline");
+					intent.putExtra("offline", "true");
 					intent.putExtra("class_no", JSONdata.StudentClass);
 					intent.putExtra("subject", JSONdata.Subjects.get(SubPosition));
 					intent.putExtra("exp_name", values.get(position));
@@ -95,7 +92,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 					intent.putExtra("exp_desc", JSONdata.ExperimentsDesc.get(j).get(position));
 					
 					Toast.makeText(parent.getContext(), "Switched to OFFLINE", Toast.LENGTH_SHORT).show();
-					parent.getContext().startActivity(intent);
+					//parent.getContext().startActivity(intent);
 				}
 			});
 	        
@@ -146,8 +143,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 					
 					Intent intent=new Intent(parent.getContext(), ShowExp.class);   
 					dataSend = "";
-					intent.putExtra("saved_status", storage_status);
-					intent.putExtra("view_mode", "online");
+					intent.putExtra("offline", "false");
 					intent.putExtra("class_no", JSONdata.StudentClass);
 					dataSend += "class_no: " + JSONdata.StudentClass + "\n";
 					intent.putExtra("subject", JSONdata.Subjects.get(SubPosition));
@@ -158,10 +154,10 @@ public class MyAdapter extends ArrayAdapter<String>{
 					dataSend += "exp_no: " + JSONdata.ExperimentsNum.get(j).get(position) + "\n";
 					intent.putExtra("theory_url", ExpTheory);
 					dataSend += "theory: " + ExpTheory + "\n";
-					intent.putExtra("procedure_url", ExpProcedure);
-					dataSend += "procedure: " + ExpProcedure  + "\n";
+					intent.putExtra("procedure_url", ExpDescription);
+					dataSend += "description: " + ExpDescription  + "\n";
 					intent.putExtra("exp_desc", JSONdata.ExperimentsDesc.get(j).get(position));
-					dataSend += "description: " + ExpDescription + "\n";
+					dataSend += "procedure: " + ExpProcedure + "\n";
 					intent.putExtra("simulation_url", ExpSimulation);
 					dataSend += "simulation: " + ExpSimulation + "\n";
 					intent.putExtra("quiz_url", ExpQuiz);
@@ -171,7 +167,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 					intent.putExtra("video_urls", allVideos);
 					dataSend += "video: " + allVideos;
 					
-					Toast.makeText(parent.getContext(), dataSend, Toast.LENGTH_SHORT).show();
+					//Toast.makeText(parent.getContext(), dataSend, Toast.LENGTH_SHORT).show();
 				
 					parent.getContext().startActivity(intent);
 					//START ACTIVITY
