@@ -72,7 +72,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 	    imageView.setImageResource(R.drawable.ic_launcher);
 	    
 	    File extStore = Environment.getExternalStorageDirectory();
-	    File myFile = new File(extStore.getAbsolutePath() + "/aakash-vlabs/"+JSONdata.StudentClass+"_"+JSONdata.Subjects.get(SubPosition)+"_"+JSONdata.ExperimentsNum.get(j).get(position)+".txt");
+	    File myFile = new File(extStore.getAbsolutePath() + "/aakash-vlabs/9_Physics_22.txt");
 
 	    if(myFile.exists()){
 	        offline.setVisibility(View.VISIBLE);
