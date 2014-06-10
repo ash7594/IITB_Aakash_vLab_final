@@ -36,7 +36,6 @@ public class MainActivity extends Activity{
         setContentView(R.layout.main_activity);
         
         Button onlineButton = (Button) findViewById(R.id.online);
-        Button offlineButton = (Button) findViewById(R.id.offline);
         
         onlineButton.setOnClickListener(new View.OnClickListener() {
 			
@@ -45,15 +44,6 @@ public class MainActivity extends Activity{
 				// TODO Auto-generated method stub
 				parseOnline();
 				
-			}
-		});
-        
-        offlineButton.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				parseOffline();
 			}
 		});
         
@@ -117,12 +107,6 @@ public class MainActivity extends Activity{
 		
 	}
 	
-	public void parseOffline() {
-		
-		
-		moveOffline();
-	}
-	
 	public void moveOnline() {
 		Class ourClass;
 		try {
@@ -133,19 +117,6 @@ public class MainActivity extends Activity{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	public void moveOffline() {
-		Class ourClass;
-		try {
-			ourClass = Class.forName("com.aakash.vlabs.ChooseExperiment");
-			Intent intent = new Intent(MainActivity.this,ourClass);
-	        startActivity(intent);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 	}
 
 }
