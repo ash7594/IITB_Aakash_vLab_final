@@ -11,9 +11,7 @@
         android:padding="10dp"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:maxWidth="72px"
-        android:maxHeight="72px"
-        android:adjustViewBounds="true" />
+         />
     
     <LinearLayout 
         android:layout_width="fill_parent"
