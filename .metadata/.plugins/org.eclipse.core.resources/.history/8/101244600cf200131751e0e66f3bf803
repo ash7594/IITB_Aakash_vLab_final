@@ -162,8 +162,6 @@ public class MyAdapter extends ArrayAdapter<String>{
 					dataSend += "procedure: " + ExpProcedure  + "\n";
 					intent.putExtra("exp_desc", JSONdata.ExperimentsDesc.get(j).get(position));
 					dataSend += "description: " + ExpDescription + "\n";
-					intent.putExtra("thumb", JSONdata.ExperimentsThumb.get(j).get(position));
-					dataSend += "thumb: " + JSONdata.ExperimentsThumb.get(j).get(position) + "\n";
 					intent.putExtra("simulation_url", ExpSimulation);
 					dataSend += "simulation: " + ExpSimulation + "\n";
 					intent.putExtra("quiz_url", ExpQuiz);

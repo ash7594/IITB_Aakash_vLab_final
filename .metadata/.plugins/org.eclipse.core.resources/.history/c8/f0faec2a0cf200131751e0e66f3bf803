@@ -87,8 +87,6 @@ public class MainActivity extends Activity{
 		JSONdata.Subjects.clear();
 		JSONdata.ExperimentsHead.clear();
 		JSONdata.ExperimentsDesc.clear();
-		JSONdata.ExperimentsThumb.clear();
-		JSONdata.SubExpThumb.clear();
 		JSONdata.SubExpHead.clear();
 		JSONdata.SubExpDesc.clear();
 		JSONdata.ExperimentNo = -1;
@@ -106,7 +104,6 @@ public class MainActivity extends Activity{
 					JSONdata.setExperimentHead(i,subExp.getString("name"));
 					JSONdata.setExperimentDesc(i,subExp.getString("description"));
 					JSONdata.setExperimentNum(i,subExp.getString("exp_no"));
-					JSONdata.setExperimentThumb(i,subExp.getString("thumb"));
 				}
 				
 			} catch (JSONException e) {

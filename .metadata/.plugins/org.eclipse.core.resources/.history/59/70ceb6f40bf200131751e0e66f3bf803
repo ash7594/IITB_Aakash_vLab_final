@@ -46,7 +46,7 @@ public class JSONdata {
 		ExperimentsNum.add(SubExpNum);
 		
 		SubExpThumb = new ArrayList<String>();
-		ExperimentsThumb.add(SubExpThumb);
+		ExperimentsNum.add(SubExpNum);
 		//SubExp.clear();
 	}
 	
@@ -67,11 +67,6 @@ public class JSONdata {
 	public static void setExperimentNum(int index, String str) {
 		// TODO Auto-generated method stub
 		ExperimentsNum.get(index).add(str);
-	}
-	
-	public static void setExperimentThumb(int index, String str) {
-		// TODO Auto-generated method stub
-		ExperimentsThumb.get(index).add(str);
 	}
     
 }
