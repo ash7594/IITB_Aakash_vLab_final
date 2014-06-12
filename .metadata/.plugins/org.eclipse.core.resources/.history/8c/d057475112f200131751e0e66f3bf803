@@ -1,7 +1,6 @@
 package com.aakash.vlabs;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -78,16 +77,12 @@ public class MyAdapter extends ArrayAdapter<String>{
 	    ///
 	    
 	    URL myUrl;
-	    InputStream inputStream = null;
 		try {
 			myUrl = new URL("http://www.cse.iitb.ac.in/~aneesh14/ic_launcher.png");
-			inputStream = (InputStream)myUrl.getContent();
+			InputStream inputStream = (InputStream)myUrl.getContent();
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	    
 	    Drawable drawable = Drawable.createFromStream(inputStream, null);
