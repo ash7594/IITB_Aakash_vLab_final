@@ -98,7 +98,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 	    
 	    ///
 	    
-	    final File extStore = Environment.getExternalStorageDirectory();
+	    File extStore = Environment.getExternalStorageDirectory();
 	    url2 = "/Android/data/com.aakash.vlabs/ExPdaTA/"+JSONdata.StudentClass+"/"+JSONdata.Subjects.get(SubPosition)+"/"+JSONdata.ExperimentsNum.get(j).get(position)+"/expData.json";
 	    File myFile = new File(extStore.getAbsolutePath() + url2);
 
@@ -111,30 +111,18 @@ public class MyAdapter extends ArrayAdapter<String>{
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					String exp_thumb = null;
-					String exp_simulation = null;
-					String exp_video = null;
-					String exp_resource = null;
-					String exp_theory = null;
-					String exp_quiz = null;
-					String exp_procedure = null;
+					String exp_thumb;
 					JSONParser jParser = new JSONParser(); 
-					json = jParser.getJSONFromUrl(extStore.getAbsolutePath() + url2);
+					json = jParser.getJSONFromUrl("/sdcard"+url2);
 					
 					try {
 						thisExp = json.getJSONObject(0);
 						exp_thumb = thisExp.getString("thumb");
-						exp_theory = thisExp.getString("theory");
-						exp_simulation = thisExp.getString("simulation");
-						exp_resource = thisExp.getString("resources");
-						exp_video = thisExp.getString("videos");
-						exp_quiz = thisExp.getString("gift");
-						exp_procedure = thisExp.getString("procedure");
-						
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					
 					
 					Intent intent=new Intent(parent.getContext(), ShowExp.class);   
 					
@@ -145,13 +133,6 @@ public class MyAdapter extends ArrayAdapter<String>{
 					intent.putExtra("exp_name", values.get(position));
 					intent.putExtra("exp_no", JSONdata.ExperimentsNum.get(j).get(position));
 					intent.putExtra("exp_desc", JSONdata.ExperimentsDesc.get(j).get(position));
-					intent.putExtra("exp_thumb", exp_thumb);
-					intent.putExtra("theory_url", exp_theory);
-					intent.putExtra("simulation_url", exp_simulation);
-					intent.putExtra("resource_url", exp_resource);
-					intent.putExtra("video_urls", exp_video);
-					intent.putExtra("quiz_url", exp_quiz);
-					intent.putExtra("procedure_url", exp_procedure);
 					
 					Toast.makeText(parent.getContext(), "Switched to OFFLINE", Toast.LENGTH_SHORT).show();
 					//parent.getContext().startActivity(intent);

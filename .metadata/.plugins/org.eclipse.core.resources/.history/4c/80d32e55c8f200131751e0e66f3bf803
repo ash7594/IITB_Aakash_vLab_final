@@ -1,7 +1,5 @@
 package com.aakash.vlabs;
 
-import java.io.File;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,7 +8,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.StrictMode;
 import android.view.View;
 import android.view.Window;
@@ -125,55 +122,6 @@ public class MainActivity extends Activity{
 	
 	public void parseOffline() {
 		
-		JSONdata.Subjects.clear();
-		JSONdata.ExperimentsHead.clear();
-		JSONdata.ExperimentsDesc.clear();
-		JSONdata.ExperimentsThumb.clear();
-		JSONdata.SubExpThumb.clear();
-		JSONdata.SubExpHead.clear();
-		JSONdata.SubExpDesc.clear();
-		JSONdata.ExperimentNo = -1;
-		JSONdata.subjectNo = -1;
-		
-		JSONdata.setStudentClass("9");
-		String pathAppend = "/Android/data/com.aakash.vlabs/ExPdaTA/" + JSONdata.StudentClass + "/";
-		String pathAppend1 = "";
-		String pathAppend2 = "";
-		File extStore = Environment.getExternalStorageDirectory();
-		File myFile1 = new File(extStore.getAbsolutePath() + pathAppend);
-		
-		File list1[] = myFile1.listFiles();
-		
-		for(int i=0; i<list1.length; i++) {
-			
-			JSONdata.setSubject(list1[i].getName());
-			pathAppend1 = JSONdata.Subjects.get(i) + "/";
-			File myFile2 = new File(extStore.getAbsolutePath() + pathAppend + pathAppend1);
-			File list2[] = myFile2.listFiles();
-			
-			for(int j=0; j<list2.length; j++) {
-				
-				JSONdata.setExperimentNum(i,list2[j].getName());
-				pathAppend2 = list2[j].getName() + "/expData.json";
-				
-				JSONParser jParser = new JSONParser(); 
-				json = jParser.getJSONFromUrl(extStore.getAbsolutePath() + pathAppend + pathAppend1 + pathAppend2);
-				
-				JSONObject subExp;
-				try {
-					subExp = json.getJSONObject(j);
-					JSONdata.setExperimentHead(i,subExp.getString("exp_name"));
-					JSONdata.setExperimentDesc(i,subExp.getString("exp_desc"));
-					JSONdata.setExperimentThumb(i,subExp.getString("thumb"));
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-			}
-			
-			
-		}
 		
 		moveOffline();
 	}

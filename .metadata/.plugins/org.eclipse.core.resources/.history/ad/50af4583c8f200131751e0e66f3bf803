@@ -155,20 +155,9 @@ public class MainActivity extends Activity{
 				
 				JSONdata.setExperimentNum(i,list2[j].getName());
 				pathAppend2 = list2[j].getName() + "/expData.json";
+				File myFile3 = new File(extStore.getAbsolutePath() + pathAppend + pathAppend1 + pathAppend2);
 				
-				JSONParser jParser = new JSONParser(); 
-				json = jParser.getJSONFromUrl(extStore.getAbsolutePath() + pathAppend + pathAppend1 + pathAppend2);
 				
-				JSONObject subExp;
-				try {
-					subExp = json.getJSONObject(j);
-					JSONdata.setExperimentHead(i,subExp.getString("exp_name"));
-					JSONdata.setExperimentDesc(i,subExp.getString("exp_desc"));
-					JSONdata.setExperimentThumb(i,subExp.getString("thumb"));
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 				
 			}
 			
