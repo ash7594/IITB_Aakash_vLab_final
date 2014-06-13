@@ -1,13 +1,21 @@
 package com.aakash.vlabs;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Picture;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Theory extends Activity {
@@ -24,17 +32,20 @@ public class Theory extends Activity {
 		
 		TextView mydesc = (TextView) findViewById(R.id.mydesc);
 		mydesc.setText("Description : " + ExpDesc);
-		
+		ImageView imageView = (ImageView) findViewById(R.id.imageView);
 		WebView mWebView = (WebView) findViewById(R.id.webview);
 		final ProgressDialog pd = ProgressDialog.show(this, "", "Theory is Loading...",true);        
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setSupportZoom(true);  
         mWebView.getSettings().setBuiltInZoomControls(true);
+        mWebView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+		mWebView.setScrollbarFadingEnabled(true);
+		mWebView.getSettings().setLoadsImagesAutomatically(true);
+        
         mWebView.setWebViewClient(new WebViewClient() {
-            @Override
+			@Override
             public void onPageFinished(WebView view, String url) {
-                if(pd.isShowing()&&pd!=null)
-                {
+                if(pd.isShowing()&&pd!=null) {
                     pd.dismiss();
                 }
             }
@@ -48,7 +59,16 @@ public class Theory extends Activity {
                 return true;
               }
         });
+        
+       
 		mWebView.loadUrl(TheoryUrl);
-       // mWebView.loadUrl("http://askdjfalk");
+		
+	}
+	
+	@Override
+	public File getCacheDir(){
+		// NOTE: this method is used in Android 2.1
+		
+		return getApplicationContext().getCacheDir();
 	}
 }

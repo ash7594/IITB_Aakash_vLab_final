@@ -1,18 +1,39 @@
 package com.aakash.vlabs;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Html;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 import android.widget.Toast;
-
 @SuppressLint("NewApi")
 public class ShowExp extends TabActivity {
 	
@@ -21,13 +42,72 @@ public class ShowExp extends TabActivity {
 	int mycolor = Color.BLACK;//Color.rgb(51, 204, 255);//33CCFF
 	TextView mytitle;
 	
-	String class_no;
-	String subject;
-	String exp_name;
-	String exp_no;
+	String class_no,subject,exp_name,exp_no,exp_icon, view_mode,saved_status;
 	String TheoryUrl,ProcedureUrl,ResourceUrl,SimulatinUrl,QuizUrl,ExpDesc, VideoUrls;
 	int no_vid = 0;
 	
+	boolean err = false;
+	String err_msg = "";
+	
+	File extStorageAppBasePath,extStorageAppExpPath,myExpFilesDir;
+	File externalStorageDir = Environment.getExternalStorageDirectory();
+
+	
+	public static final int DIALOG_DOWNLOAD_PROGRESS = 0;
+    private ProgressDialog pDialog;
+    
+    Menu menu;
+    MenuItem saved_btn; 
+    
+    int total_files = 3, completed = 0;
+    String exp_message = "Offline Experiment Files Saved";
+    
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.optionmeu, menu);
+	    super.onCreateOptionsMenu(menu);
+	    
+	    this.menu = menu;
+		this.saved_btn = menu.findItem(R.id.saveExp);
+		
+		if(view_mode.equals("offline")){
+			saved_btn.setTitle("Offline Exp");
+			Toast.makeText(getApplicationContext(), "You are now in offline mode", Toast.LENGTH_LONG).show();
+		}
+		else if(view_mode.equals("online") && saved_status.equals("no")){
+			saved_btn.setTitle("Save Exp");
+			exp_message = "Offline Experiment Files Saved";
+			Toast.makeText(getApplicationContext(), "You are in online mode", Toast.LENGTH_LONG).show();
+		}
+		else if(view_mode.equals("online") && saved_status.equals("yes")){
+			saved_btn.setTitle("Update Exp");
+			exp_message = "Offline Experiment Files Updated";
+			Toast.makeText(getApplicationContext(), "You are viewing saved experimnet in online mode", Toast.LENGTH_LONG).show();
+		}
+		
+	    return true;
+	}
+	
+	
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		 switch (item.getItemId()) {
+	        case R.id.saveExp:
+	        	if(saved_status.equals("offline")) return true;
+	        	else return saveExp();
+	            //return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+
+	}
+	
+	
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -39,15 +119,41 @@ public class ShowExp extends TabActivity {
 		subject = getIntent().getExtras().getString("subject");
 		exp_name = getIntent().getExtras().getString("exp_name");
 		exp_no = getIntent().getExtras().getString("exp_no");
-		
-		
-		
-		TheoryUrl = getIntent().getExtras().getString("theory_url");
 		ExpDesc = getIntent().getExtras().getString("exp_desc");
+		
+		exp_icon = getIntent().getExtras().getString("exp_icon");
+		
+		view_mode = getIntent().getExtras().getString("view_mode");
+		saved_status = getIntent().getExtras().getString("saved_status");
+		
+		/*if(view_mode.equals("online")){
+			
+			URL myUrl;
+			InputStream inputStream = null;
+			try {
+				myUrl = new URL(exp_icon);
+				inputStream = (InputStream)myUrl.getContent();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			Drawable drawable = Drawable.createFromStream(inputStream, null);
+			
+			ActionBar actionbar = getActionBar();
+			actionbar.setIcon(drawable);
+			//logo.setImageDrawable(drawable);
+			
+		}*/
+		TheoryUrl = getIntent().getExtras().getString("theory_url");
 		ProcedureUrl = getIntent().getExtras().getString("procedure_url");
 		ResourceUrl = getIntent().getExtras().getString("resource_url");
-		//SimulatinUrl = getIntent().getExtras().getString("simulation_url");
-		//QuizUrl = getIntent().getExtras().getString("quiz_url");
+		
+		SimulatinUrl = getIntent().getExtras().getString("simulation_url");
+		QuizUrl = getIntent().getExtras().getString("quiz_url");
 	
 		VideoUrls = getIntent().getExtras().getString("video_urls");
 		
@@ -137,7 +243,7 @@ public class ShowExp extends TabActivity {
 		resources.setBackgroundColor(Color.TRANSPARENT);
 	}
 	
-public void tabHandler(View target) {
+	public void tabHandler(View target) {
 		
 		theory.setSelected(false);
 		procedure.setSelected(false);
@@ -175,4 +281,222 @@ public void tabHandler(View target) {
 		}
 	};
 	
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		
+		pDialog = new ProgressDialog(this);
+		pDialog.setMessage("Saving files " + (++id) +" of "+total_files+" Please wait...");
+		pDialog.setIndeterminate(false);
+		pDialog.setMax(100);
+		//pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		pDialog.setCancelable(false);
+		pDialog.show();
+		return pDialog;
+	}
+	
+	
+
+	public boolean saveExp(){
+		
+		extStorageAppBasePath = new File(externalStorageDir.getAbsolutePath() +
+				File.separator + "Android" + File.separator + "data" +
+				File.separator + getPackageName() + File.separator + "ExPdaTA");
+		
+		myExpFilesDir = new File(extStorageAppBasePath.getAbsolutePath()
+				+ File.separator  + class_no + File.separator 
+				+ File.separator  + subject + File.separator
+				+ File.separator  + exp_no + File.separator);
+		
+		boolean cont = true;
+		if(!myExpFilesDir.exists()){
+			if(myExpFilesDir.mkdirs()){
+				Log.d("Sub directories ---", "created");
+				cont = true;
+			}
+			else {
+				err = true;
+				cont = false;
+			}
+		}
+		
+		if(cont){
+			
+			Thread t = new Thread(){
+        		public void run(){
+        			String url = "http://www.rgukt.in/pdftnp/Advertisement_ONGC.pdf";
+        			DownloadFile(url);
+        			DownloadFile("http://aakashlabs.org/static/images/favicon.ico");
+        		}
+        	};
+        	
+        	//t.start();
+        	if(completed == 0) {
+        		new DownloadFileFromURL().execute(exp_icon);
+        	}
+			
+		}
+		return false;
+	}
+	
+
+
+	public void DownloadFile(String path){
+		try {
+			URL url = new URL(path);
+			
+			String fileName = path.substring( path.lastIndexOf('/')+1, path.length() );
+			String fileNameWithoutExtn = fileName.substring(0, fileName.lastIndexOf('.'));
+
+			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+			urlConnection.setRequestMethod("GET");
+			urlConnection.setDoOutput(true);
+			urlConnection.connect();
+			File file = new File(myExpFilesDir,fileName);
+			FileOutputStream fileOutput = new FileOutputStream(file);
+			InputStream inputStream = urlConnection.getInputStream();
+			int totalSize = urlConnection.getContentLength();
+			int downloadedSize = 0;
+			byte[] buffer = new byte[1024];
+			int bufferLength = 0;
+			
+			while ( (bufferLength = inputStream.read(buffer)) > 0 ) {
+				fileOutput.write(buffer, 0, bufferLength);
+				downloadedSize += bufferLength;
+			}
+			fileOutput.close();
+	
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	class DownloadFileFromURL extends AsyncTask<String, String, String> {
+
+		/**
+		 * Before starting background thread
+		 * Show Progress Bar Dialog
+		 * */
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			showDialog(completed);
+		}
+
+		/**
+		 * Downloading file in background thread
+		 * */
+		@Override
+		protected String doInBackground(String... f_url) {
+			int count;
+	        try {
+	        	String path = f_url[0];
+	        	String fileName = path.substring( path.lastIndexOf('/')+1, path.length() );
+				String fileNameWithoutExtn = fileName.substring(0, fileName.lastIndexOf('.'));
+				
+	            URL url = new URL(f_url[0]);
+	            URLConnection conection = url.openConnection();
+	            conection.connect();
+	            // getting file length
+	            int lenghtOfFile = conection.getContentLength();
+
+	            // input stream to read file - with 8k buffer
+	            InputStream input = new BufferedInputStream(url.openStream(), 8192);
+	            
+	            // Output stream to write file
+	            File file = new File(myExpFilesDir,fileName);
+	            OutputStream output = new FileOutputStream(file);
+
+	            byte data[] = new byte[1024];
+
+	            long total = 0;
+
+	            while ((count = input.read(data)) != -1) {
+	                total += count;
+	                // publishing the progress....
+	                // After this onProgressUpdate will be called
+	                publishProgress(""+(int)((total*100)/lenghtOfFile));
+	                
+	                // writing data to file
+	                output.write(data, 0, count);
+	            }
+
+	            // flushing output
+	            output.flush();
+	            
+	            // closing streams
+	            output.close();
+	            input.close();
+	            
+	        } catch (Exception e) {
+	        	Log.e("Error: ", e.getMessage());
+	        }
+	        
+	        return null;
+		}
+		
+		/**
+		 * Updating progress bar
+		 * */
+		protected void onProgressUpdate(String... progress) {
+			// setting progress percentage
+            pDialog.setProgress(Integer.parseInt(progress[0]));
+       }
+
+		/**
+		 * After completing background task
+		 * Dismiss the progress dialog
+		 * **/
+		@Override
+		protected void onPostExecute(String file_url) {
+			dismissDialog(completed);
+			completed++;
+			
+			if(completed != total_files){
+				
+				if(completed == 1){
+					new DownloadFileFromURL().execute(QuizUrl);
+				}
+				else if(completed == 2){
+					new DownloadFileFromURL().execute(SimulatinUrl);
+				}
+					
+			}
+			else {
+				String icon_fileName = exp_icon.substring( exp_icon.lastIndexOf('/')+1, exp_icon.length() );
+				icon_fileName = myExpFilesDir.getAbsolutePath() + File.separator + icon_fileName ;
+				String quiz_fileName = QuizUrl.substring( QuizUrl.lastIndexOf('/')+1, QuizUrl.length() );
+				quiz_fileName = myExpFilesDir.getAbsolutePath() + File.separator + quiz_fileName ;
+				String simulation_fileName = SimulatinUrl.substring( SimulatinUrl.lastIndexOf('/')+1, SimulatinUrl.length() );
+				simulation_fileName = myExpFilesDir.getAbsolutePath() + File.separator +simulation_fileName ;
+				try {
+					FileOutputStream expJson = new FileOutputStream(myExpFilesDir.getAbsolutePath() + File.separator + "expData.json");
+					String mydata= "[{ "
+							+ " 'class_no' : '"+class_no+"', 'subject' : '"+subject+"', "
+							+ "'exp_name' : '"+exp_name+"', "
+							+ "'exp_no' : '"+exp_no+"','exp_desc' : '"+ExpDesc+"', "
+							+ "'thumb' : '"+icon_fileName+"', 'simulation' : '"+simulation_fileName+"', "
+							+ "'resources' : '"+ResourceUrl+"','videos' : '"+VideoUrls+"', "
+							+ "'theory' : '"+TheoryUrl+"', 'procedure' : '"+ProcedureUrl+"', "
+							+ "'gift' : '"+quiz_fileName+"',},]";
+					byte[] buf = mydata.getBytes();
+					expJson.write(buf);
+					expJson.close();
+					
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				saved_btn.setTitle("Update Exp");
+				completed = 0;
+				Toast.makeText(getApplicationContext(), exp_message , Toast.LENGTH_LONG).show();
+			}
+		}
+	}
+
 }
