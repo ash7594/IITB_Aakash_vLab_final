@@ -1,10 +1,16 @@
 package com.aakash.vlabs;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -101,7 +107,8 @@ public class MyAdapter extends ArrayAdapter<String>{
 	    final File extStore = Environment.getExternalStorageDirectory();
 	    url2 = "/Android/data/com.aakash.vlabs/ExPdaTA/"+JSONdata.StudentClass+"/"+JSONdata.Subjects.get(SubPosition)+"/"+JSONdata.ExperimentsNum.get(j).get(position)+"/expData.json";
 	    File myFile = new File(extStore.getAbsolutePath() + url2);
-
+	    //Toast.makeText(parent.getContext(), url2 , Toast.LENGTH_SHORT).show();
+	    
 	    if(myFile.exists()) {
 	    	storage_status = "yes";
 	        offline.setVisibility(View.VISIBLE);
@@ -111,16 +118,43 @@ public class MyAdapter extends ArrayAdapter<String>{
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					String exp_thumb = null;
-					String exp_simulation = null;
-					String exp_video = null;
-					String exp_resource = null;
-					String exp_theory = null;
-					String exp_quiz = null;
-					String exp_procedure = null;
-					JSONParser jParser = new JSONParser(); 
-					json = jParser.getJSONFromUrl(extStore.getAbsolutePath() + url2);
+					String exp_thumb = "";
+					String exp_simulation = "";
+					String exp_video = "";
+					String exp_resource = "";
+					String exp_theory = "";
+					String exp_quiz = "";
+					String exp_procedure = "";
+					String jString = null;
+					try {
+
+			            //File dir = Environment.getExternalStorageDirectory();
+			            File yourFile = new File(extStore, url2);
+			            FileInputStream stream = new FileInputStream(yourFile);
+			            
+			            try {
+			                FileChannel fc = stream.getChannel();
+			                MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
+			                
+			                jString = Charset.defaultCharset().decode(bb).toString();
+			              }
+			              finally {
+			                stream.close();
+			              }
+
+
+			              thisExp = new JSONObject(jString); 
+			              
+
+
+			        } catch (Exception e) {e.printStackTrace();}
 					
+					if(thisExp == null)
+						Toast.makeText(parent.getContext(), jString, Toast.LENGTH_SHORT).show();
+					
+					//JSONParser jParser = new JSONParser();
+					//json = jParser.getJSONFromUrl("file:///mnt/sdcard"+url2);
+					/*
 					try {
 						thisExp = json.getJSONObject(0);
 						exp_thumb = thisExp.getString("thumb");
@@ -145,16 +179,16 @@ public class MyAdapter extends ArrayAdapter<String>{
 					intent.putExtra("exp_name", values.get(position));
 					intent.putExtra("exp_no", JSONdata.ExperimentsNum.get(j).get(position));
 					intent.putExtra("exp_desc", JSONdata.ExperimentsDesc.get(j).get(position));
-					intent.putExtra("exp_thumb", exp_thumb);
+					intent.putExtra("exp_icon", exp_thumb);
 					intent.putExtra("theory_url", exp_theory);
 					intent.putExtra("simulation_url", exp_simulation);
 					intent.putExtra("resource_url", exp_resource);
 					intent.putExtra("video_urls", exp_video);
 					intent.putExtra("quiz_url", exp_quiz);
 					intent.putExtra("procedure_url", exp_procedure);
-					
-					Toast.makeText(parent.getContext(), "Switched to OFFLINE", Toast.LENGTH_SHORT).show();
-					parent.getContext().startActivity(intent);
+					*/
+					//Toast.makeText(parent.getContext(), "Switched to OFFLINE", Toast.LENGTH_SHORT).show();
+					//parent.getContext().startActivity(intent);
 				}
 			});
 	        
@@ -223,7 +257,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 					dataSend += "procedure: " + ExpProcedure  + "\n";
 					intent.putExtra("exp_desc", JSONdata.ExperimentsDesc.get(j).get(position));
 					dataSend += "description: " + ExpDescription + "\n";
-					intent.putExtra("thumb", JSONdata.ExperimentsThumb.get(j).get(position));
+					intent.putExtra("exp_icon", JSONdata.ExperimentsThumb.get(j).get(position));
 					dataSend += "thumb: " + JSONdata.ExperimentsThumb.get(j).get(position) + "\n";
 					intent.putExtra("simulation_url", ExpSimulation);
 					dataSend += "simulation: " + ExpSimulation + "\n";
