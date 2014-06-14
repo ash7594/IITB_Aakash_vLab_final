@@ -229,7 +229,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 						exp_procedure += jString.charAt(var);
 					var+=2;
 					
-					for(;jString.charAt(var)!='}';var++);var-=2;
+					for(;jString.charAt(var)!=',';var++);var-=2;
 					for(;jString.charAt(var)!='"';var--);var++;
 					for(;jString.charAt(var)!='"';var++)
 						exp_quiz += jString.charAt(var);

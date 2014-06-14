@@ -35,7 +35,9 @@ public class Theory extends Activity {
 		ImageView imageView = (ImageView) findViewById(R.id.imageView);
 		WebView mWebView = (WebView) findViewById(R.id.webview);
 		final ProgressDialog pd = ProgressDialog.show(this, "", "Theory is Loading...",true);
-	
+		///
+		pd.setCancelable(true);
+        //////
 		mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setSupportZoom(true);  
         mWebView.getSettings().setBuiltInZoomControls(true);

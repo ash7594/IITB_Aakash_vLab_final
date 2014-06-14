@@ -473,13 +473,13 @@ public class ShowExp extends TabActivity {
 				try {
 					FileOutputStream expJson = new FileOutputStream(myExpFilesDir.getAbsolutePath() + File.separator + "expData.json");
 					String mydata= "[{ "
-							+ " \"class_no\" : \""+class_no+"\", \"subject\" : \""+subject+"\", "
-							+ "\"exp_name\" : \""+exp_name+"\", "
-							+ "\"exp_no\" : \""+exp_no+"\",\"exp_desc\" : \""+ExpDesc+"\", "
-							+ "\"thumb\" : \""+icon_fileName+"\", \"simulation\" : \""+simulation_fileName+"\", "
-							+ "\"resources\" : \""+ResourceUrl+"\",\"videos\" : \""+VideoUrls+"\", "
-							+ "\"theory\" : \""+TheoryUrl+"\", \"procedure\" : \""+ProcedureUrl+"\", "
-							+ "\"gift\" : \""+quiz_fileName+"\"}]";
+							+ " 'class_no' : '"+class_no+"', 'subject' : '"+subject+"', "
+							+ "'exp_name' : '"+exp_name+"', "
+							+ "'exp_no' : '"+exp_no+"','exp_desc' : '"+ExpDesc+"', "
+							+ "'thumb' : '"+icon_fileName+"', 'simulation' : '"+simulation_fileName+"', "
+							+ "'resources' : '"+ResourceUrl+"','videos' : '"+VideoUrls+"', "
+							+ "'theory' : '"+TheoryUrl+"', 'procedure' : '"+ProcedureUrl+"', "
+							+ "'gift' : '"+quiz_fileName+"',},]";
 					byte[] buf = mydata.getBytes();
 					expJson.write(buf);
 					expJson.close();

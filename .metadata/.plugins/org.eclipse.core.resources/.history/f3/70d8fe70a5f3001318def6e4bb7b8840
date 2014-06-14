@@ -162,90 +162,13 @@ public class MyAdapter extends ArrayAdapter<String>{
 					
 					//try {
 						//thisExp = json.getJSONObject(0);
-					int var = 0;
-					for(;jString.charAt(var)!=',';var++);var-=2;
-					for(;jString.charAt(var)!='"';var--);var++;
-					for(;jString.charAt(var)!='"';var++)
-						exp_class += jString.charAt(var);
-					var+=2;
-					
-					for(;jString.charAt(var)!=',';var++);var-=2;
-					for(;jString.charAt(var)!='"';var--);var++;
-					for(;jString.charAt(var)!='"';var++)
-						exp_subject += jString.charAt(var);
-					var+=2;
-					
-					for(;jString.charAt(var)!=',';var++);var-=2;
-					for(;jString.charAt(var)!='"';var--);var++;
-					for(;jString.charAt(var)!='"';var++)
-						exp_name += jString.charAt(var);
-					var+=2;
-					
-					for(;jString.charAt(var)!=',';var++);var-=2;
-					for(;jString.charAt(var)!='"';var--);var++;
-					for(;jString.charAt(var)!='"';var++)
-						exp_no += jString.charAt(var);
-					var+=2;
-					
-					for(;jString.charAt(var)!=',';var++);var-=2;
-					for(;jString.charAt(var)!='"';var--);var++;
-					for(;jString.charAt(var)!='"';var++)
-						exp_desc += jString.charAt(var);
-					var+=2;
-					
-					for(;jString.charAt(var)!=',';var++);var-=2;
-					for(;jString.charAt(var)!='"';var--);var++;
-					for(;jString.charAt(var)!='"';var++)
-						exp_thumb += jString.charAt(var);
-					var+=2;
-					
-					for(;jString.charAt(var)!=',';var++);var-=2;
-					for(;jString.charAt(var)!='"';var--);var++;
-					for(;jString.charAt(var)!='"';var++)
-						exp_simulation += jString.charAt(var);
-					var+=2;
-					
-					for(;jString.charAt(var)!=',';var++);var-=2;
-					for(;jString.charAt(var)!='"';var--);var++;
-					for(;jString.charAt(var)!='"';var++)
-						exp_resource += jString.charAt(var);
-					var+=2;
-					
-					for(;jString.charAt(var)!=',';var++);var-=2;
-					for(;jString.charAt(var)!='"';var--);var++;
-					for(;jString.charAt(var)!='"';var++)
-						exp_video += jString.charAt(var);
-					var+=2;
-					
-					for(;jString.charAt(var)!=',';var++);var-=2;
-					for(;jString.charAt(var)!='"';var--);var++;
-					for(;jString.charAt(var)!='"';var++)
-						exp_theory += jString.charAt(var);
-					var+=2;
-					
-					for(;jString.charAt(var)!=',';var++);var-=2;
-					for(;jString.charAt(var)!='"';var--);var++;
-					for(;jString.charAt(var)!='"';var++)
-						exp_procedure += jString.charAt(var);
-					var+=2;
-					
-					for(;jString.charAt(var)!='}';var++);var-=2;
-					for(;jString.charAt(var)!='"';var--);var++;
-					for(;jString.charAt(var)!='"';var++)
-						exp_quiz += jString.charAt(var);
-					
-//						exp_class = ;
-//						exp_subject = ;
-//						exp_name = ;
-//						exp_no = ;
-//						exp_desc = ;
-//						exp_thumb = thisExp.getString("thumb");
-//						exp_theory = thisExp.getString("theory");
-//						exp_simulation = thisExp.getString("simulation");
-//						exp_resource = thisExp.getString("resources");
-//						exp_video = thisExp.getString("videos");
-//						exp_quiz = thisExp.getString("gift");
-//						exp_procedure = thisExp.getString("procedure");
+						exp_thumb = thisExp.getString("thumb");
+						exp_theory = thisExp.getString("theory");
+						exp_simulation = thisExp.getString("simulation");
+						exp_resource = thisExp.getString("resources");
+						exp_video = thisExp.getString("videos");
+						exp_quiz = thisExp.getString("gift");
+						exp_procedure = thisExp.getString("procedure");
 						
 					//} catch (JSONException e) {
 						// TODO Auto-generated catch block
@@ -256,11 +179,11 @@ public class MyAdapter extends ArrayAdapter<String>{
 					
 					intent.putExtra("saved_status", storage_status);
 					intent.putExtra("view_mode", "offline");
-					intent.putExtra("class_no", exp_class);
-					intent.putExtra("subject", exp_subject);
-					intent.putExtra("exp_name", exp_name);
-					intent.putExtra("exp_no", exp_no);
-					intent.putExtra("exp_desc", exp_desc);
+					intent.putExtra("class_no", JSONdata.StudentClass);
+					intent.putExtra("subject", JSONdata.Subjects.get(SubPosition));
+					intent.putExtra("exp_name", values.get(position));
+					intent.putExtra("exp_no", JSONdata.ExperimentsNum.get(j).get(position));
+					intent.putExtra("exp_desc", JSONdata.ExperimentsDesc.get(j).get(position));
 					intent.putExtra("exp_icon", exp_thumb);
 					intent.putExtra("theory_url", exp_theory);
 					intent.putExtra("simulation_url", exp_simulation);
@@ -269,8 +192,8 @@ public class MyAdapter extends ArrayAdapter<String>{
 					intent.putExtra("quiz_url", exp_quiz);
 					intent.putExtra("procedure_url", exp_procedure);
 					
-					Toast.makeText(parent.getContext(), "Switched to OFFLINE", Toast.LENGTH_SHORT).show();
-					parent.getContext().startActivity(intent);
+					//Toast.makeText(parent.getContext(), "Switched to OFFLINE", Toast.LENGTH_SHORT).show();
+					//parent.getContext().startActivity(intent);
 				}
 			});
 	        
