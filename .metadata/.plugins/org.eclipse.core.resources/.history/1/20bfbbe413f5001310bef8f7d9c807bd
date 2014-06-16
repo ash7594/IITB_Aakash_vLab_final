@@ -278,10 +278,6 @@ public class MainActivity extends Activity{
 				for(;jString.charAt(var)!='"';var++)
 					exp_quiz += jString.charAt(var);
 				
-				JSONdata.setExperimentHead(i,exp_name);
-				JSONdata.setExperimentDesc(i,exp_desc);
-				JSONdata.setExperimentThumb(i,exp_thumb);
-				
 			}
 			
 			

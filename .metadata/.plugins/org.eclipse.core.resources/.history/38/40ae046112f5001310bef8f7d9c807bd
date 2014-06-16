@@ -155,7 +155,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 			        } catch (Exception e) {e.printStackTrace();}
 					
 					//if(thisExp == null)
-					//Toast.makeText(parent.getContext(), jString, Toast.LENGTH_SHORT).show();
+					Toast.makeText(parent.getContext(), jString, Toast.LENGTH_SHORT).show();
 					
 					//JSONParser jParser = new JSONParser();
 					//json = jParser.getJSONFromUrl("file:///mnt/sdcard"+url2);
