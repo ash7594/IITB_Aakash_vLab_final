@@ -111,7 +111,6 @@ public class MyAdapter extends ArrayAdapter<String>{
 	    
 	    if(myFile.exists()) {
 	    	storage_status = "yes";
-	    	if(JSONdata.fullOffline == 0) {
 	        offline.setVisibility(View.VISIBLE);
 	        
 	        offline.setOnClickListener(new OnClickListener() {
@@ -273,7 +272,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 					parent.getContext().startActivity(intent);
 				}
 			});
-	    	}
+	        
 	    } else {
 	    	storage_status = "no";
 	    }
@@ -283,9 +282,6 @@ public class MyAdapter extends ArrayAdapter<String>{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
-				if(JSONdata.fullOffline == 0) {
-				
 				JSONParser jParser = new JSONParser(); 
 				json = jParser.getJSONFromUrl(url);
 				
@@ -363,163 +359,7 @@ public class MyAdapter extends ArrayAdapter<String>{
 					Toast.makeText(parent.getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
 				}
 				
-			} else {
-			
-				String exp_thumb = "";
-				String exp_simulation = "";
-				String exp_video = "";
-				String exp_resource = "";
-				String exp_theory = "";
-				String exp_quiz = "";
-				String exp_procedure = "";
-				
-				String exp_class = "";
-				String exp_subject = "";
-				String exp_name = "";
-				String exp_no = "";
-				String exp_desc = "";
-				
-				String jString = null;
-				try {
-
-		            //File dir = Environment.getExternalStorageDirectory();
-		            File yourFile = new File(extStore, url2);
-		            FileInputStream stream = new FileInputStream(yourFile);
-		            
-		            try {
-		                FileChannel fc = stream.getChannel();
-		                MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
-		                
-		                jString = Charset.defaultCharset().decode(bb).toString();
-		              }
-		              finally {
-		                stream.close();
-		              }
-
-		            //exp_desc = "dfsdddl";	
-		              //thisExp = new JSONObject(jString);
-
-		        } catch (Exception e) {e.printStackTrace();}
-				
-				//if(thisExp == null)
-				//Toast.makeText(parent.getContext(), jString, Toast.LENGTH_SHORT).show();
-				
-				//JSONParser jParser = new JSONParser();
-				//json = jParser.getJSONFromUrl("file:///mnt/sdcard"+url2);
-				
-				//try {
-					//thisExp = json.getJSONObject(0);
-				int var = 0;
-				for(;jString.charAt(var)!=',';var++);var-=2;
-				for(;jString.charAt(var)!='"';var--);var++;
-				for(;jString.charAt(var)!='"';var++)
-					exp_class += jString.charAt(var);
-				var+=2;
-				
-				for(;jString.charAt(var)!=',';var++);var-=2;
-				for(;jString.charAt(var)!='"';var--);var++;
-				for(;jString.charAt(var)!='"';var++)
-					exp_subject += jString.charAt(var);
-				var+=2;
-				
-				for(;jString.charAt(var)!=',';var++);var-=2;
-				for(;jString.charAt(var)!='"';var--);var++;
-				for(;jString.charAt(var)!='"';var++)
-					exp_name += jString.charAt(var);
-				var+=2;
-				
-				for(;jString.charAt(var)!=',';var++);var-=2;
-				for(;jString.charAt(var)!='"';var--);var++;
-				for(;jString.charAt(var)!='"';var++)
-					exp_no += jString.charAt(var);
-				var+=2;
-				
-				for(;jString.charAt(var)!=',';var++);var-=2;
-				for(;jString.charAt(var)!='"';var--);var++;
-				for(;jString.charAt(var)!='"';var++)
-					exp_desc += jString.charAt(var);
-				var+=2;
-				
-				for(;jString.charAt(var)!=',';var++);var-=2;
-				for(;jString.charAt(var)!='"';var--);var++;
-				for(;jString.charAt(var)!='"';var++)
-					exp_thumb += jString.charAt(var);
-				var+=2;
-				
-				for(;jString.charAt(var)!=',';var++);var-=2;
-				for(;jString.charAt(var)!='"';var--);var++;
-				for(;jString.charAt(var)!='"';var++)
-					exp_simulation += jString.charAt(var);
-				var+=2;
-				
-				for(;jString.charAt(var)!=',';var++);var-=2;
-				for(;jString.charAt(var)!='"';var--);var++;
-				for(;jString.charAt(var)!='"';var++)
-					exp_resource += jString.charAt(var);
-				var+=2;
-				
-				for(;jString.charAt(var)!=',';var++);var-=2;
-				for(;jString.charAt(var)!='"';var--);var++;
-				for(;jString.charAt(var)!='"';var++)
-					exp_video += jString.charAt(var);
-				var+=2;
-				
-				for(;jString.charAt(var)!=',';var++);var-=2;
-				for(;jString.charAt(var)!='"';var--);var++;
-				for(;jString.charAt(var)!='"';var++)
-					exp_theory += jString.charAt(var);
-				var+=2;
-				
-				for(;jString.charAt(var)!=',';var++);var-=2;
-				for(;jString.charAt(var)!='"';var--);var++;
-				for(;jString.charAt(var)!='"';var++)
-					exp_procedure += jString.charAt(var);
-				var+=2;
-				
-				for(;jString.charAt(var)!='}';var++);var-=2;
-				for(;jString.charAt(var)!='"';var--);var++;
-				for(;jString.charAt(var)!='"';var++)
-					exp_quiz += jString.charAt(var);
-//					exp_class = ;
-//					exp_subject = ;
-//					exp_name = ;
-//					exp_no = ;
-//					exp_desc = ;
-//					exp_thumb = thisExp.getString("thumb");
-//					exp_theory = thisExp.getString("theory");
-//					exp_simulation = thisExp.getString("simulation");
-//					exp_resource = thisExp.getString("resources");
-//					exp_video = thisExp.getString("videos");
-//					exp_quiz = thisExp.getString("gift");
-//					exp_procedure = thisExp.getString("procedure");
-					
-				//} catch (JSONException e) {
-					// TODO Auto-generated catch block
-				//	e.printStackTrace();
-				//}
-				
-				Intent intent=new Intent(parent.getContext(), ShowExp.class);   
-				
-				intent.putExtra("saved_status", storage_status);
-				intent.putExtra("view_mode", "offline");
-				intent.putExtra("class_no", exp_class);
-				intent.putExtra("subject", exp_subject);
-				intent.putExtra("exp_name", exp_name);
-				intent.putExtra("exp_no", exp_no);
-				intent.putExtra("exp_desc", exp_desc);
-				intent.putExtra("exp_icon", exp_thumb);
-				intent.putExtra("theory_url", exp_theory);
-				intent.putExtra("simulation_url", exp_simulation);
-				intent.putExtra("resource_url", exp_resource);
-				intent.putExtra("video_urls", exp_video);
-				intent.putExtra("quiz_url", exp_quiz);
-				intent.putExtra("procedure_url", exp_procedure);
-				
-				//Toast.makeText(parent.getContext(), "Switched to OFFLINE", Toast.LENGTH_SHORT).show();
-				parent.getContext().startActivity(intent);
-				
 			}
-			}	
 		});
 	    
 	    return rowView;

@@ -97,7 +97,7 @@ public class ShowExp extends TabActivity {
 		// TODO Auto-generated method stub
 		 switch (item.getItemId()) {
 	        case R.id.saveExp:
-	        	if(view_mode.equals("offline")) return true;
+	        	if(saved_status.equals("offline")) return true;
 	        	else return saveExp();
 	            //return true;
 	        default:

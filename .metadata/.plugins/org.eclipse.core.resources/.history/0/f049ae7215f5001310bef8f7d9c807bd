@@ -11,7 +11,7 @@ public class JSONdata {
         "Mathematics",
         "Biology"
     };*/
-	static int fullOffline = 0;
+	
 	static int subjectNo = -1;
 	static int ExperimentNo = -1;
 	static String StudentClass;

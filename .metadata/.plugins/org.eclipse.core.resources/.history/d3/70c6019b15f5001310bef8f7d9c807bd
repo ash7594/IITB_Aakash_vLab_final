@@ -100,7 +100,6 @@ public class MainActivity extends Activity{
 		JSONdata.SubExpDesc.clear();
 		JSONdata.ExperimentNo = -1;
 		JSONdata.subjectNo = -1;
-		JSONdata.fullOffline = 0;
 		
 		for (int i = 0; i < json1.length(); i++) { 
 			
@@ -139,9 +138,7 @@ public class MainActivity extends Activity{
 		JSONdata.SubExpDesc.clear();
 		JSONdata.ExperimentNo = -1;
 		JSONdata.subjectNo = -1;
-		JSONdata.fullOffline = 0;
 		
-		JSONdata.fullOffline = 1;
 		JSONdata.setStudentClass("9");
 		String pathAppend = "/Android/data/com.aakash.vlabs/ExPdaTA/" + JSONdata.StudentClass + "/";
 		String pathAppend1 = "";
