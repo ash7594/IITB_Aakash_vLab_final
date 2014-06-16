@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Aakash VLabs</string>
+    <string name="menu1">Go Online</string>
+    <string name="menu2">Go Offline</string>
+    <string name="img_desc">My Aakash Logo</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+
+</resources>

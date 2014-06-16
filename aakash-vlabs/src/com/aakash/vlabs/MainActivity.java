@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity{
@@ -28,6 +30,10 @@ public class MainActivity extends Activity{
 	private static String url = "http://www.cse.iitb.ac.in/~aneesh14/file2.json";
 	JSONObject classSubList;
 	JSONArray json1 = null;
+	
+	private Button Settings_btn,About_btn,Class_btn,Offline_btn;
+	private ImageView MyAakashImg; 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -42,7 +48,7 @@ public class MainActivity extends Activity{
         
         setContentView(R.layout.main_activity);
         
-        Button onlineButton = (Button) findViewById(R.id.online);
+        /*Button onlineButton = (Button) findViewById(R.id.online);
         Button offlineButton = (Button) findViewById(R.id.offline);
         
         onlineButton.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +66,33 @@ public class MainActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				parseOffline();
+			}
+		});*/
+        
+        MyAakashImg = (ImageView) findViewById(R.id.imageView2);
+		
+		Class_btn = (Button) findViewById(R.id.online);
+		//Class_btn.setBackgroundColor(color.transparent);
+		Class_btn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				//Toast.makeText(getApplicationContext(),"You have clicked on Online App Mode",Toast.LENGTH_SHORT).show();
+				parseOnline();
+			}
+		});
+		
+		
+		Offline_btn = (Button) findViewById(R.id.offline);
+		//Offline_btn.setBackgroundColor(color.transparent);
+		Offline_btn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				//Toast.makeText(getApplicationContext(),"You have clicked on Offline App Mode",Toast.LENGTH_SHORT).show();
 				parseOffline();
 			}
 		});
