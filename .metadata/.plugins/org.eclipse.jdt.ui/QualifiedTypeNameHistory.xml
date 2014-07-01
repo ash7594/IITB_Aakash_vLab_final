@@ -45,4 +45,5 @@
 <fullyQualifiedTypeName name="android.R"/>
 <fullyQualifiedTypeName name="android.R.layout"/>
 <fullyQualifiedTypeName name="com.virtualis.R"/>
+<fullyQualifiedTypeName name="com.virtualis.all.MyAdapter"/>
 </qualifiedTypeNameHistroy>
