@@ -46,13 +46,13 @@
                 android:text="Scale/Rotate"
                 android:textColor="@color/white" />
 
-            <RadioButton
-                android:id="@+id/deleteRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="modeRadioClick"
-                android:text="Delete" 
-                android:textColor="@color/white"/>
+<!--             <RadioButton -->
+<!--                 android:id="@+id/deleteRadioButton" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:onClick="modeRadioClick" -->
+<!--                 android:text="Delete"  -->
+<!--                 android:textColor="@color/white"/> -->
         </RadioGroup>
 
         <RelativeLayout

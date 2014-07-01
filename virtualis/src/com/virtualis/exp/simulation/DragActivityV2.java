@@ -1677,6 +1677,7 @@ implements View.OnLongClickListener, View.OnClickListener, View.OnTouchListener
 
 	}
 
+	private boolean ghostModeStarted = false ;
 	public void playBack(View v)
 	{
 		if(reader==null)
@@ -1712,8 +1713,9 @@ implements View.OnLongClickListener, View.OnClickListener, View.OnTouchListener
 			}
 			else
 			{
-				if(ghostMode && studentMode)
+				if(ghostMode && studentMode && !ghostModeStarted)
 				{
+					ghostModeStarted = true ;
 					do
 					{
 						movePerformed = nextMove(reader) ;
@@ -1858,21 +1860,21 @@ implements View.OnLongClickListener, View.OnClickListener, View.OnTouchListener
 					objectSelectedForScaleRotate.setBackgroundColor(Color.argb(100, 255, 0, 0));
 			}
 			break ;
-		case R.id.deleteRadioButton:
-			if(checked)
-			{
-				deleteMode = true ;
-				findViewById(R.id.deleteButton).setVisibility(View.VISIBLE);
-				findViewById(R.id.rotateValueText).setVisibility(View.INVISIBLE);
-				findViewById(R.id.seekArc).setVisibility(View.INVISIBLE);
-				findViewById(R.id.scaleBar).setVisibility(View.INVISIBLE);
-				findViewById(R.id.plusSignImage).setVisibility(View.INVISIBLE);
-				findViewById(R.id.minusSignImage).setVisibility(View.INVISIBLE);
-				findViewById(R.id.rotateValueText).setVisibility(View.INVISIBLE);
-				if(objectSelectedForScaleRotate!=null)
-					objectSelectedForScaleRotate.setBackgroundColor(Color.argb(100, 255, 0, 0));
-			}
-			break ;
+//		case R.id.deleteRadioButton:
+//			if(checked)
+//			{
+//				deleteMode = true ;
+//				findViewById(R.id.deleteButton).setVisibility(View.VISIBLE);
+//				findViewById(R.id.rotateValueText).setVisibility(View.INVISIBLE);
+//				findViewById(R.id.seekArc).setVisibility(View.INVISIBLE);
+//				findViewById(R.id.scaleBar).setVisibility(View.INVISIBLE);
+//				findViewById(R.id.plusSignImage).setVisibility(View.INVISIBLE);
+//				findViewById(R.id.minusSignImage).setVisibility(View.INVISIBLE);
+//				findViewById(R.id.rotateValueText).setVisibility(View.INVISIBLE);
+//				if(objectSelectedForScaleRotate!=null)
+//					objectSelectedForScaleRotate.setBackgroundColor(Color.argb(100, 255, 0, 0));
+//			}
+//			break ;
 		}
 	}
 
@@ -2296,6 +2298,7 @@ implements View.OnLongClickListener, View.OnClickListener, View.OnTouchListener
 				fileEndReached = false ;
 				deleteMode = false ;
 				objectSelectedForDelete = null ;
+				ghostModeStarted = false ;
 				//				DragController.resetReader();
 
 				if(studentMode)
