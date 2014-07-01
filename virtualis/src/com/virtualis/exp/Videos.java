@@ -39,6 +39,7 @@ public class Videos extends Activity {
 	String[] Urls = null;
 	int no_vid = 0;
 	TextView label;
+	VideoView video;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,10 +53,7 @@ public class Videos extends Activity {
 		label = (TextView) findViewById(R.id.video_no);
 		label.setText("Video 1");
 		for (int j = 0; j < Urls.length; j++) {
-			
-			
-			
-			final VideoView video = new VideoView(this);
+			video = new VideoView(this);
 			Uri uri=Uri.parse(Urls[j]);
 		    video.setVideoURI(uri);
 		    MediaController mc = new MediaController(this);
@@ -101,7 +99,10 @@ public class Videos extends Activity {
 				@Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
-					video.stopPlayback();
+					if(video!=null){
+						video.stopPlayback();
+						video=null;
+					}
 					viewFlipper.showPrevious();
 					label.setText("Video "+ (String)viewFlipper.getCurrentView().getTag());
 				}
@@ -112,10 +113,11 @@ public class Videos extends Activity {
 				@Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
-					video.stopPlayback();
+					if(video!=null){
+						video.stopPlayback();
+						video=null;
+					}
 					viewFlipper.showNext();
-					
-
 					label.setText("Video "+ (String)viewFlipper.getCurrentView().getTag());
 					//Toast.makeText(getApplication(), ""+viewFlipper.getCurrentView().getTag(), Toast.LENGTH_SHORT).show();
 				}
