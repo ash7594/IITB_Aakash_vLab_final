@@ -1,4 +1,4 @@
-IITB Virtual Labs
-=================
+vlabs-v2
+========
 
-Android App of Virtual Lab for students as part of Aakash Project...
+Completion module of aakash vlabs
