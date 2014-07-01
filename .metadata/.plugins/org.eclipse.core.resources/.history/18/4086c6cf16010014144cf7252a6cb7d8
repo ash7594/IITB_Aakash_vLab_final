@@ -38,7 +38,7 @@ public class SubjectList extends ListFragment {
         if (getFragmentManager().findFragmentById(R.id.experiment_list) != null) {
             getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         }
-        getListView().setItemChecked(MyAdapter.j, true);
+        getListView().setItemChecked(0, true);
     }
 
     @Override
