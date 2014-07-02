@@ -43,7 +43,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 	private JSONObject thisExp;
 	@SuppressWarnings("unused")
 	private String dataSend = "";
-	private static String url = "http://www.cse.iitb.ac.in/~ashutosh14/subject.json";
+	private static String url = "http://10.105.14.13/newAakashSiteMergeUpload/generateJSON2.php?cls=" + JSONdata.StudentClass + "&sname=";
 	private static String url2 = "";
 	private JSONArray vidList = null;
 	private JSONObject vid = null;
@@ -309,6 +309,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 				storage_status = (String) v.getTag();
 				if(JSONdata.fullOffline == 0) {
 				
+				url += JSONdata.Subjects.get(SubPosition) +	"&ename=" + values.get(position);
 				JSONParser jParser = new JSONParser(); 
 				json = jParser.getJSONFromUrl(url);
 				
@@ -337,7 +338,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 					
 					try {
 						ExpTheory = thisExp.getString("theory");
-						ExpProcedure = thisExp.getString("procedure");
+						ExpProcedure = thisExp.getString("proc");
 						ExpSimulation = thisExp.getString("simulation");
 						ExpQuiz = thisExp.getString("quiz");
 						ExpResource = thisExp.getString("resource");
@@ -360,9 +361,9 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 					dataSend += "exp_name: " + values.get(position) + "\n";
 					intent.putExtra("exp_no", JSONdata.ExperimentsNum.get(j).get(position));
 					dataSend += "exp_no: " + JSONdata.ExperimentsNum.get(j).get(position) + "\n";
-					intent.putExtra("theory_url", ExpTheory);
+					intent.putExtra("theory_url", "http://10.105.14.13/newAakashSiteMergeUpload/"+ExpTheory);
 					dataSend += "theory: " + ExpTheory + "\n";
-					intent.putExtra("procedure_url", ExpProcedure);
+					intent.putExtra("procedure_url", "http://10.105.14.13/newAakashSiteMergeUpload/"+ExpProcedure);
 					dataSend += "procedure: " + ExpProcedure  + "\n";
 					intent.putExtra("exp_desc", JSONdata.ExperimentsDesc.get(j).get(position));
 					dataSend += "description: " + ExpDescription + "\n";
@@ -372,7 +373,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 					dataSend += "simulation: " + ExpSimulation + "\n";
 					intent.putExtra("quiz_url", ExpQuiz);
 					dataSend += "quiz: " + ExpQuiz + "\n";
-					intent.putExtra("resource_url", ExpResource);
+					intent.putExtra("resource_url", "http://10.105.14.13/newAakashSiteMergeUpload/"+ExpResource);
 					dataSend += "resource: " + ExpResource + "\n";
 					intent.putExtra("video_urls", allVideos);
 					dataSend += "video: " + allVideos;

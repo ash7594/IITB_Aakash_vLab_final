@@ -63,7 +63,7 @@ public class Splash extends Activity implements Global{
 	JSONObject classSubList = null;
 	
 	int count = 0,subcount = 0;
-	String url = "http://www.cse.iitb.ac.in/~ashutosh14/file2.json";
+	String url = "http://10.105.14.13/newAakashSiteMergeUpload/generateJSON.php?cls=";
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +92,7 @@ public class Splash extends Activity implements Global{
         
 		try {
 			gf = new GetConf();
+			url += gf.getClsNo();
 			//url = gf.getExpList_Link();
 			//Log.d("URL - given",url);
 			
@@ -369,7 +370,7 @@ public class Splash extends Activity implements Global{
 		JSONdata.fullOffline = 0;
 		
 		JSONdata.fullOffline = 1;
-		JSONdata.setStudentClass("9");
+		JSONdata.setStudentClass(gf.getClsNo());
 		String pathAppend = BASEDIR + "ExPdaTA/" + JSONdata.StudentClass + "/";
 		String pathAppend1 = "";
 		String pathAppend2 = "";
