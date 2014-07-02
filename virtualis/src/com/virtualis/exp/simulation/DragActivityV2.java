@@ -68,6 +68,12 @@ import com.virtualis.exp.simulation.SeekArc.OnSeekArcChangeListener;
  * 
  */
 
+/**
+ * 
+ * @author Animesh Das
+ *
+ */
+
 @SuppressLint("ResourceAsColor")
 public class DragActivityV2 extends Activity 
 implements View.OnLongClickListener, View.OnClickListener, View.OnTouchListener
@@ -147,26 +153,104 @@ implements View.OnLongClickListener, View.OnClickListener, View.OnTouchListener
 		"Switch On",
 		"Switch Off",
 		"Voltmeter",
+		"Ammeter",
+		"Battery",
+		"Resistor",
+		"Switch On",
+		"Switch Off",
+		"Voltmeter",
+		"Ammeter",
+		"Battery",
+		"Resistor",
+		"Switch On",
+		"Switch Off",
+		"Voltmeter",
+		"Ammeter",
+		"Battery",
+		"Resistor",
+		"Switch On",
+		"Switch Off",
+		"Voltmeter",
+		"Ammeter",
+		"Battery",
+		"Resistor",
+		"Switch On",
+		"Switch Off",
+		"Voltmeter",
+		"Ammeter",
+		"Battery",
+		"Resistor",
+		"Switch On",
+		"Switch Off",
+		"Voltmeter"
 	} ;
 	//			"Cancel"
 	//	} ;
 	public static Integer[] imageId = {
-		R.drawable.exp_simulation_ammeter,
-		R.drawable.exp_simulation_battery,
-		R.drawable.exp_simulation_resistor,
-		R.drawable.exp_simulation_glossy_green_button,
-		R.drawable.exp_simulation_glossy_red_button,
-		R.drawable.exp_simulation_voltmeter,
+		R.drawable.img1,
+		R.drawable.img2,
+		R.drawable.img3,
+		R.drawable.img4,
+		R.drawable.img5,
+		R.drawable.img6,
+		R.drawable.img7,
+		R.drawable.img8,
+		R.drawable.img9,
+		R.drawable.img10,
+		R.drawable.img11,
+		R.drawable.img12,
+		R.drawable.img13,
+		R.drawable.img14,
+		R.drawable.img15,
+		R.drawable.img16,
+		R.drawable.img17,
+		R.drawable.img18,
+		R.drawable.img19,
+		R.drawable.img20,
+		R.drawable.img21,
+		R.drawable.img22,
+		R.drawable.img23,
+		R.drawable.img24,
+		R.drawable.img25,
+		R.drawable.img26,
+		R.drawable.img27,
+		R.drawable.img28,
+		R.drawable.img29,
+		R.drawable.img30
 	};
 
 	public static int[] imageIdInt = {
-		R.drawable.exp_simulation_ammeter,
-		R.drawable.exp_simulation_battery,
-		R.drawable.exp_simulation_resistor,
-		R.drawable.exp_simulation_glossy_green_button,
-		R.drawable.exp_simulation_glossy_red_button,
-		R.drawable.exp_simulation_voltmeter,
-	};
+		R.drawable.img1,
+		R.drawable.img2,
+		R.drawable.img3,
+		R.drawable.img4,
+		R.drawable.img5,
+		R.drawable.img6,
+		R.drawable.img7,
+		R.drawable.img8,
+		R.drawable.img9,
+		R.drawable.img10,
+		R.drawable.img11,
+		R.drawable.img12,
+		R.drawable.img13,
+		R.drawable.img14,
+		R.drawable.img15,
+		R.drawable.img16,
+		R.drawable.img17,
+		R.drawable.img18,
+		R.drawable.img19,
+		R.drawable.img20,
+		R.drawable.img21,
+		R.drawable.img22,
+		R.drawable.img23,
+		R.drawable.img24,
+		R.drawable.img25,
+		R.drawable.img26,
+		R.drawable.img27,
+		R.drawable.img28,
+		R.drawable.img29,
+		R.drawable.img30
+		};
 
 
 	//			R.drawable.cancel_icon
@@ -221,37 +305,14 @@ implements View.OnLongClickListener, View.OnClickListener, View.OnTouchListener
 					else
 					{
 						currentTouchMode = TouchMode.LINE ;
-						//						ImageView lineImage = (ImageView) findViewById(R.id.blankBackground) ;
-						//						createLine(lineImage, 0, 0, 1000, 1000, Color.GREEN);
-						//						createLine(lineImage, 0, 0, 500, 0, Color.RED);
-						//						findViewById(R.id.blankBackground).bringToFront();
 					}
 					trace("CurrentTouchMode set to " + currentTouchMode) ;
 					return ;
 				}
-				Toast.makeText(DragActivityV2.this, "You Clicked at " +equipmentItems[+ which], Toast.LENGTH_SHORT).show();
 				final ImageView newView = new ImageView (getApplicationContext());
 				//				newView.setImageResource(R.drawable.beaker);
 
 				newView.setImageResource(imageId[which]) ;
-				//				switch(which)
-				//				{
-				//				case 0:
-				//					newView.setImageResource(R.drawable.exp_simulation_ammeter);
-				//					break ;
-				//				case 1:
-				//					newView.setImageResource(R.drawable.exp_simulation_battery);
-				//					break ;
-				//				case 2:
-				//					newView.setImageResource(R.drawable.exp_simulation_resistor);
-				//					break ;
-				//				case 3:
-				//					//Text Box insertion
-				//					break ;
-				//				default:
-				//					break ;	
-				//				}
-
 				if(!studentMode)
 					newView.setId(IDGen.generateViewId());
 
