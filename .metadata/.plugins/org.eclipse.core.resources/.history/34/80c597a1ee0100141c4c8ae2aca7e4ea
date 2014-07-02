@@ -41,8 +41,9 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 	int SubPosition = 0;
 	JSONArray json = null;
 	private JSONObject thisExp;
+	@SuppressWarnings("unused")
 	private String dataSend = "";
-	private static String url = "http://www.cse.iitb.ac.in/~aneesh14/json/subject_exp.json";
+	private static String url = "http://10.105.14.13/newAakashSiteMergeUpload/generateJSON2.php?cls=" + JSONdata.StudentClass + "&sname=";
 	private static String url2 = "";
 	private JSONArray vidList = null;
 	private JSONObject vid = null;
@@ -78,11 +79,21 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 		TextView textView2 = (TextView) rowView.findViewById(R.id.desc);
 	    ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
 	    Button offline = (Button) rowView.findViewById(R.id.offline);
-	    textView1.setText(values.get(position));
-
-	    offline.setVisibility(View.INVISIBLE);
-	    textView2.setText(JSONdata.ExperimentsDesc.get(j).get(position));
+	    offline.setTag(position);
 	    
+	    if(values.get(position).length()<=30){
+	    	textView1.setText(values.get(position));
+	    }else {
+	    	textView1.setText(values.get(position).substring(0, 30) + " ....");
+	    }
+	    if(JSONdata.ExperimentsDesc.get(j).get(position).length()<=55){
+	    	textView2.setText(JSONdata.ExperimentsDesc.get(j).get(position));
+	    }else{
+	    	textView2.setText(JSONdata.ExperimentsDesc.get(j).get(position).substring(0, 55) + " ....");
+	    }
+	    
+	    
+	    offline.setVisibility(View.INVISIBLE);
 	    ///
 	    
 	    URL myUrl;
@@ -110,7 +121,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 	    url2 = BASEDIR + "ExPdaTA/"+JSONdata.StudentClass+"/"+JSONdata.Subjects.get(SubPosition)+"/"+JSONdata.ExperimentsNum.get(j).get(position)+"/expData.json";
 	    File myFile = new File(url2);
 	    //Toast.makeText(parent.getContext(), url2 , Toast.LENGTH_SHORT).show();
-	    
+	    Log.d("url2",url2);
 	    if(myFile.exists()) {
 	    	
 	    	storage_status = "yes";
@@ -122,6 +133,10 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
+					Object obj = v.getTag(); 
+					int which = ((Integer)obj).intValue(); 
+					url2 = BASEDIR+"ExPdaTA/"+JSONdata.StudentClass+"/"+JSONdata.Subjects.get(SubPosition)+"/"+JSONdata.ExperimentsNum.get(j).get(which)+"/expData.json";
+					
 					String exp_thumb = "";
 					String exp_simulation = "";
 					String exp_video = "";
@@ -167,7 +182,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 					
 					//try {
 						//thisExp = json.getJSONObject(0);
-					Log.d("Received Jstring --",jString);
+					//Log.d("Received Jstring --",jString);
 					int var = 0;
 					for(;jString.charAt(var)!=',';var++);var-=2;
 					for(;jString.charAt(var)!='"';var--);var++;
@@ -281,17 +296,20 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 			});
 	    	}
 	    } else {
+	    	Log.d("i am here ", "msg");
 	    	storage_status = "no";
 	    }
-	    
+	    rowView.setTag(storage_status);
 	    rowView.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
+				storage_status = (String) v.getTag();
 				if(JSONdata.fullOffline == 0) {
 				
+				url += JSONdata.Subjects.get(SubPosition) +	"&ename=" + values.get(position);
 				JSONParser jParser = new JSONParser(); 
 				json = jParser.getJSONFromUrl(url);
 				
@@ -320,7 +338,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 					
 					try {
 						ExpTheory = thisExp.getString("theory");
-						ExpProcedure = thisExp.getString("procedure");
+						ExpProcedure = thisExp.getString("proc");
 						ExpSimulation = thisExp.getString("simulation");
 						ExpQuiz = thisExp.getString("quiz");
 						ExpResource = thisExp.getString("resource");
@@ -330,6 +348,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 						e.printStackTrace();
 					}	
 					
+					Log.d("Storage_Status", storage_status);
 					Intent intent=new Intent(parent.getContext(), com.virtualis.exp.ShowExp.class);   
 					dataSend = "";
 					intent.putExtra("saved_status", storage_status);
@@ -342,9 +361,9 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 					dataSend += "exp_name: " + values.get(position) + "\n";
 					intent.putExtra("exp_no", JSONdata.ExperimentsNum.get(j).get(position));
 					dataSend += "exp_no: " + JSONdata.ExperimentsNum.get(j).get(position) + "\n";
-					intent.putExtra("theory_url", ExpTheory);
+					intent.putExtra("theory_url", "http://10.105.14.13/newAakashSiteMergeUpload/"+ExpTheory);
 					dataSend += "theory: " + ExpTheory + "\n";
-					intent.putExtra("procedure_url", ExpProcedure);
+					intent.putExtra("procedure_url", "http://10.105.14.13/newAakashSiteMergeUpload/"+ExpProcedure);
 					dataSend += "procedure: " + ExpProcedure  + "\n";
 					intent.putExtra("exp_desc", JSONdata.ExperimentsDesc.get(j).get(position));
 					dataSend += "description: " + ExpDescription + "\n";
@@ -354,12 +373,12 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 					dataSend += "simulation: " + ExpSimulation + "\n";
 					intent.putExtra("quiz_url", ExpQuiz);
 					dataSend += "quiz: " + ExpQuiz + "\n";
-					intent.putExtra("resource_url", ExpResource);
+					intent.putExtra("resource_url", "http://10.105.14.13/newAakashSiteMergeUpload/"+ExpResource);
 					dataSend += "resource: " + ExpResource + "\n";
 					intent.putExtra("video_urls", allVideos);
 					dataSend += "video: " + allVideos;
 					
-					Toast.makeText(parent.getContext(), dataSend, Toast.LENGTH_SHORT).show();
+					//Toast.makeText(parent.getContext(), dataSend, Toast.LENGTH_SHORT).show();
 				
 					parent.getContext().startActivity(intent);
 					//START ACTIVITY
@@ -371,6 +390,8 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 				
 			} else {
 			
+				url2 = BASEDIR+"ExPdaTA/"+JSONdata.StudentClass+"/"+JSONdata.Subjects.get(SubPosition)+"/"+JSONdata.ExperimentsNum.get(j).get(position)+"/expData.json";
+				
 				String exp_thumb = "";
 				String exp_simulation = "";
 				String exp_video = "";

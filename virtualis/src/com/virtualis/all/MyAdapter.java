@@ -99,7 +99,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 	    URL myUrl;
 	    InputStream inputStream = null;
 		try {
-			myUrl = new URL(JSONdata.ExperimentsThumb.get(j).get(position));
+			myUrl = new URL("http://10.105.14.13/newAakashSiteMergeUpload/assets/img/"+JSONdata.ExperimentsThumb.get(j).get(position));
 			inputStream = (InputStream)myUrl.getContent();
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
