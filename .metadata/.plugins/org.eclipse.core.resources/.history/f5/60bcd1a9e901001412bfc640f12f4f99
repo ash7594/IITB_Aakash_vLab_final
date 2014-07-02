@@ -7,7 +7,7 @@
 	<string name="menu1">Go Online   </string>
     <string name="menu2">Go Offline  </string>
     <string name="img_desc">My Aakash Logo</string>
-    <string name="aakash_desc">Virtualis v1.0</string>
+    <string name="aakash_desc">Welcome to Aakash vlabs v1.0. Get Started with Class 9 or Use change class</string>
 	<string name="getstart_title">This is GetStart Title</string>
     <string name="caption_class">Select Your Class</string>
     <string name="caption_getstart">Show Get Started</string>

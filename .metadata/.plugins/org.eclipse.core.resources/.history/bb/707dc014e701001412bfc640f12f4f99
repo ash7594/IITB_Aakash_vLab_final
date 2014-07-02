@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10"
-    android:background="@drawable/start_aakash3" >
+    android:weightSum="10" >
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -32,7 +31,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_weight="7"
@@ -44,17 +43,17 @@
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="7"
+            android:layout_weight="6"
             android:contentDescription="@string/aakash_desc"
             android:padding="20sp"
-            android:src="@drawable/one_trans"
+            android:src="@drawable/start_aakash2"
             tools:ignore="NestedWeights" />
 
         <LinearLayout
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="3"
+            android:layout_weight="4"
             android:orientation="vertical"
             android:padding="20sp" >
 

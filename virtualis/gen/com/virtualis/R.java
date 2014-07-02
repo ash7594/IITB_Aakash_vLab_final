@@ -1320,7 +1320,7 @@ containing a value of this type.
         public static final int one_theory=0x7f0200ad;
         public static final int one_trans=0x7f0200ae;
         public static final int one_videos=0x7f0200af;
-        public static final int start_aakash2=0x7f0200b0;
+        public static final int start_aakash3=0x7f0200b0;
         public static final int start_ic_launcher=0x7f0200b1;
     }
     public static final class id {

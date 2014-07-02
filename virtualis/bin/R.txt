@@ -359,7 +359,7 @@ int drawable one_simulation 0x7f0200ac
 int drawable one_theory 0x7f0200ad
 int drawable one_trans 0x7f0200ae
 int drawable one_videos 0x7f0200af
-int drawable start_aakash2 0x7f0200b0
+int drawable start_aakash3 0x7f0200b0
 int drawable start_ic_launcher 0x7f0200b1
 int id Image1 0x7f06005a
 int id Image2 0x7f06005b

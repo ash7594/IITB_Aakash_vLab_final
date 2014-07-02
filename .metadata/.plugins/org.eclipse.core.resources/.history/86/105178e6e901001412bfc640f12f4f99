@@ -44,7 +44,7 @@
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="7"
+            android:layout_weight="9"
             android:contentDescription="@string/aakash_desc"
             android:padding="20sp"
             android:src="@drawable/one_trans"
@@ -54,7 +54,7 @@
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="3"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:padding="20sp" >
 
