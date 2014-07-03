@@ -391,9 +391,9 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 				
 			} else {
 			
-				//Log.d(""+j,""+position);
+				Log.d(""+j,""+position);
 				url2 = BASEDIR+"ExPdaTA/"+JSONdata.StudentClass+"/"+JSONdata.Subjects.get(SubPosition)+"/"+JSONdata.ExperimentsNum.get(j).get(position)+"/expData.json";
-				//Log.d("url 2 ",url2);
+				Log.d("url 2 ",url2);
 				
 				String exp_thumb = "";
 				String exp_simulation = "";

@@ -324,11 +324,9 @@ public class Splash extends Activity implements Global{
 		JSONdata.ExperimentsHead.clear();
 		JSONdata.ExperimentsDesc.clear();
 		JSONdata.ExperimentsThumb.clear();
-		JSONdata.ExperimentsNum.clear();
 		JSONdata.SubExpThumb.clear();
 		JSONdata.SubExpHead.clear();
 		JSONdata.SubExpDesc.clear();
-		JSONdata.SubExpNum.clear();
 		JSONdata.ExperimentNo = -1;
 		JSONdata.subjectNo = -1;
 		JSONdata.fullOffline = 0;
@@ -365,11 +363,9 @@ public class Splash extends Activity implements Global{
 		JSONdata.ExperimentsHead.clear();
 		JSONdata.ExperimentsDesc.clear();
 		JSONdata.ExperimentsThumb.clear();
-		JSONdata.ExperimentsNum.clear();
 		JSONdata.SubExpThumb.clear();
 		JSONdata.SubExpHead.clear();
 		JSONdata.SubExpDesc.clear();
-		JSONdata.SubExpNum.clear();
 		JSONdata.ExperimentNo = -1;
 		JSONdata.subjectNo = -1;
 		JSONdata.fullOffline = 0;

@@ -69,7 +69,7 @@ public class ShowExp extends TabActivity implements Global {
     Menu menu;
     MenuItem saved_btn,del_btn; 
     
-    int total_files = 3, completed = 0;
+    int total_files = 2, completed = 0;
     String exp_message = "Offline Experiment Files Saved";
     boolean del = false;
     
@@ -503,7 +503,6 @@ public class ShowExp extends TabActivity implements Global {
 			if(completed != total_files){
 				
 				if(completed == 1){
-					Log.d("urls - ", QuizUrl);
 					new DownloadFileFromURL().execute(QuizUrl);
 				}
 				else if(completed == 2){

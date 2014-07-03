@@ -135,7 +135,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					Object obj = v.getTag(); 
-					int which = ((Integer)obj).intValue();
+					int which = ((Integer)obj).intValue(); 
 					url2 = BASEDIR+"ExPdaTA/"+JSONdata.StudentClass+"/"+JSONdata.Subjects.get(SubPosition)+"/"+JSONdata.ExperimentsNum.get(j).get(which)+"/expData.json";
 					
 					String exp_thumb = "";
@@ -372,7 +372,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 					dataSend += "thumb: " + JSONdata.ExperimentsThumb.get(j).get(position) + "\n";
 					intent.putExtra("simulation_url", ExpSimulation);
 					dataSend += "simulation: " + "http://"+testIP+"/newAakashSiteMergeUpload/"+ExpSimulation + "\n";
-					intent.putExtra("quiz_url", "http://"+testIP+"/newAakashSiteMergeUpload/assets/quiz/"+ExpQuiz);
+					intent.putExtra("quiz_url", "http://"+testIP+"/newAakashSiteMergeUpload/"+ExpQuiz);
 					dataSend += "quiz: " + "http://"+testIP+"/newAakashSiteMergeUpload/" + ExpQuiz + "\n";
 					intent.putExtra("resource_url", "http://"+testIP+"/newAakashSiteMergeUpload/"+ExpResource);
 					dataSend += "resource: " + ExpResource + "\n";
@@ -391,9 +391,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 				
 			} else {
 			
-				//Log.d(""+j,""+position);
 				url2 = BASEDIR+"ExPdaTA/"+JSONdata.StudentClass+"/"+JSONdata.Subjects.get(SubPosition)+"/"+JSONdata.ExperimentsNum.get(j).get(position)+"/expData.json";
-				//Log.d("url 2 ",url2);
 				
 				String exp_thumb = "";
 				String exp_simulation = "";

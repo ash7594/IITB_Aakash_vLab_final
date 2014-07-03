@@ -503,7 +503,6 @@ public class ShowExp extends TabActivity implements Global {
 			if(completed != total_files){
 				
 				if(completed == 1){
-					Log.d("urls - ", QuizUrl);
 					new DownloadFileFromURL().execute(QuizUrl);
 				}
 				else if(completed == 2){
