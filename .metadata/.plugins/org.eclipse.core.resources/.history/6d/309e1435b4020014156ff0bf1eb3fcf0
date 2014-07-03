@@ -36,7 +36,7 @@ public class Simulation extends Activity {
 				// TODO Auto-generated method stub
 				File storage = Environment.getExternalStorageDirectory() ;
 		    	File directory = new File(storage.getAbsolutePath() + "/BlenderPlayer");
-		    	File file = new File(directory,"/Archimedes_Interactive.blend") ;
+		    	File file = new File(directory,"/test.blend") ;
 		    	if(file.canRead()){
 		            if(file.exists()){
 		                  Uri path=Uri.fromFile(file);

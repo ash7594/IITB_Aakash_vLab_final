@@ -70,7 +70,7 @@ public class QuizPreStart extends Activity {
 		setContentView(R.layout.one_quiz_pre_start);
 		
 		if(view_mode.equals("online")){
-			online_url = getIntent().getStringExtra("offline_url");
+			online_url = getIntent().getExtras("offline_url");
 			new HttpAsyncTask().execute(online_url);
 		}
 		else {
