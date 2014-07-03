@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.virtualis.R;
 import com.virtualis.exp.quiz.ParseAnswer.McqOpts;
@@ -297,7 +298,7 @@ public class QuizStart extends Activity implements OnAnswered{
 				msg += "Wrong";
 				AllAns[QnNo].setSubString("Your Ans : <span class='wrong'>"+AllAns[QnNo].getSubAns()+"</span>");
 			}
-			//Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
 		}
 		else if(AllAns[QnNo].getQnType().equals("Multiple")){
 			String msg = "Your Answer is ";
@@ -322,7 +323,7 @@ public class QuizStart extends Activity implements OnAnswered{
 				else msg += "Wrong";
 				AllAns[QnNo].setSubString("Your Ans : <span class='"+cls+"'>"+AllAns[QnNo].getSubmulOptAns()+"<br>#"+AllAns[QnNo].getMulFeedback().get(AllAns[QnNo].getMulOptindex())+"</span>");
 			}
-			//Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
 		}
 		else if(AllAns[QnNo].getQnType().equals("Multiple_many")){
 			float num = 0;
@@ -356,7 +357,7 @@ public class QuizStart extends Activity implements OnAnswered{
 			
 			AllAns[QnNo].setScoredWeight(num);
 			AllAns[QnNo].setSubString("Your Ans : <br>"+tmp);
-			//Toast.makeText(getApplicationContext(), num + " Answers Correct", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), num + " Answers Correct", Toast.LENGTH_SHORT).show();
 		}
 		else if(AllAns[QnNo].getQnType().equals("Short_Answer")){
 			String msg = "Your Answer is ";
