@@ -368,7 +368,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 					dataSend += "procedure: " + ExpProcedure  + "\n";
 					intent.putExtra("exp_desc", JSONdata.ExperimentsDesc.get(j).get(position));
 					dataSend += "description: " + ExpDescription + "\n";
-					intent.putExtra("exp_icon", "http://"+testIP+"/newAakashSiteMergeUpload/assets/img/"+JSONdata.ExperimentsThumb.get(j).get(position));
+					intent.putExtra("exp_icon", "http://"+testIP+"/newAakashSiteMergeUpload/assets/img"+JSONdata.ExperimentsThumb.get(j).get(position));
 					dataSend += "thumb: " + JSONdata.ExperimentsThumb.get(j).get(position) + "\n";
 					intent.putExtra("simulation_url", "http://"+testIP+"/newAakashSiteMergeUpload/assets/csvFiles/"+ExpSimulation);
 					dataSend += "simulation: " + "http://"+testIP+"/newAakashSiteMergeUpload/"+ExpSimulation + "\n";

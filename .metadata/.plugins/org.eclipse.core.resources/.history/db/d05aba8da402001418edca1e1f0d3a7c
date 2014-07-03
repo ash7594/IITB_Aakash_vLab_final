@@ -368,12 +368,12 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 					dataSend += "procedure: " + ExpProcedure  + "\n";
 					intent.putExtra("exp_desc", JSONdata.ExperimentsDesc.get(j).get(position));
 					dataSend += "description: " + ExpDescription + "\n";
-					intent.putExtra("exp_icon", "http://"+testIP+"/newAakashSiteMergeUpload/assets/img/"+JSONdata.ExperimentsThumb.get(j).get(position));
+					intent.putExtra("exp_icon", JSONdata.ExperimentsThumb.get(j).get(position));
 					dataSend += "thumb: " + JSONdata.ExperimentsThumb.get(j).get(position) + "\n";
-					intent.putExtra("simulation_url", "http://"+testIP+"/newAakashSiteMergeUpload/assets/csvFiles/"+ExpSimulation);
-					dataSend += "simulation: " + "http://"+testIP+"/newAakashSiteMergeUpload/"+ExpSimulation + "\n";
-					intent.putExtra("quiz_url", "http://"+testIP+"/newAakashSiteMergeUpload/"+ExpQuiz);
-					dataSend += "quiz: " + "http://"+testIP+"/newAakashSiteMergeUpload/" + ExpQuiz + "\n";
+					intent.putExtra("simulation_url", ExpSimulation);
+					dataSend += "simulation: " + ExpSimulation + "\n";
+					intent.putExtra("quiz_url", ExpQuiz);
+					dataSend += "quiz: " + ExpQuiz + "\n";
 					intent.putExtra("resource_url", "http://"+testIP+"/newAakashSiteMergeUpload/"+ExpResource);
 					dataSend += "resource: " + ExpResource + "\n";
 					intent.putExtra("video_urls", allVideos);
