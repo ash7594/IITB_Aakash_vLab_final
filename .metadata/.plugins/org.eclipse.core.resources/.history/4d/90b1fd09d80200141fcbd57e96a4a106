@@ -17,8 +17,6 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -114,24 +112,8 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 			// TODO: handle exception
 		}
 		//Log.d("Hey jaffa","I am here .........look at me");
-		if(inputStream != null) {
-			Drawable drawable = Drawable.createFromStream(inputStream, null);
-			imageView.setImageDrawable(drawable);
-		} else {
-			/*File imgFile = new File(BASEDIR + "ExPdaTA/" + JSONdata.StudentClass + "/"+JSONdata.Subjects.get(SubPosition)+"/"+JSONdata.ExperimentsNum.get(j).get(position) + JSONdata.ExperimentsThumb.get(j).get(position));
-			if(imgFile.exists()){
-
-			    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-			    imageView.setImageBitmap(myBitmap);
-			}*/
-			
-			String myJpgPath = JSONdata.ExperimentsThumb.get(j).get(position);
-			Log.d("yosjdskdjskjdksk",myJpgPath);
-	        BitmapFactory.Options options = new BitmapFactory.Options();
-	        options.inSampleSize = 2;
-	        Bitmap bm = BitmapFactory.decodeFile(myJpgPath, options);
-	        imageView.setImageBitmap(bm); 
-		}
+	    Drawable drawable = Drawable.createFromStream(inputStream, null);
+	    imageView.setImageDrawable(drawable);
 	    
 	    //imageView.setImageResource(R.drawable.ic_launcher);
 	    

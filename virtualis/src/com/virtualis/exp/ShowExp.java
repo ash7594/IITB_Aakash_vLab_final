@@ -49,7 +49,7 @@ public class ShowExp extends TabActivity implements Global {
 	int mycolor = Color.rgb(211, 211, 211);//33CCFF #3399FF
 	TextView mytitle;
 	
-	private static String testIP = "10.105.43.83";
+	private static String testIP = "10.4.225.170";
 	String class_no,subject,exp_name,exp_no,exp_icon, view_mode,saved_status;
 	String TheoryUrl,ProcedureUrl,ResourceUrl,SimulatinUrl,QuizUrl,ExpDesc, VideoUrls;
 	int no_vid = 0;

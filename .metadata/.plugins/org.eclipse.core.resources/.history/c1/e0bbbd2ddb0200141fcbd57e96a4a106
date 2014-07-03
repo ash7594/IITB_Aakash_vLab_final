@@ -125,7 +125,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 			    imageView.setImageBitmap(myBitmap);
 			}*/
 			
-			String myJpgPath = JSONdata.ExperimentsThumb.get(j).get(position);
+			String myJpgPath = BASEDIR + "ExPdaTA/" + JSONdata.StudentClass + "/"+JSONdata.Subjects.get(SubPosition)+"/"+JSONdata.ExperimentsNum.get(j).get(position) + JSONdata.ExperimentsThumb.get(j).get(position);
 			Log.d("yosjdskdjskjdksk",myJpgPath);
 	        BitmapFactory.Options options = new BitmapFactory.Options();
 	        options.inSampleSize = 2;

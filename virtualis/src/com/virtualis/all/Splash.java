@@ -63,7 +63,7 @@ public class Splash extends Activity implements Global{
 	JSONObject classSubList = null;
 	
 	int count = 0,subcount = 0;
-	private String testIP = "10.105.43.83";
+	private String testIP = "10.4.225.170";
 	String url = "http://"+testIP+"/newAakashSiteMergeUpload/generateJSON.php?cls=";
 	
     @Override

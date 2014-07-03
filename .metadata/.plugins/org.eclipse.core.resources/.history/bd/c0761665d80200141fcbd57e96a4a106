@@ -118,19 +118,13 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 			Drawable drawable = Drawable.createFromStream(inputStream, null);
 			imageView.setImageDrawable(drawable);
 		} else {
-			/*File imgFile = new File(BASEDIR + "ExPdaTA/" + JSONdata.StudentClass + "/"+JSONdata.Subjects.get(SubPosition)+"/"+JSONdata.ExperimentsNum.get(j).get(position) + JSONdata.ExperimentsThumb.get(j).get(position));
+			File imgFile = new File(BASEDIR + "ExPdaTA/");
 			if(imgFile.exists()){
 
 			    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
 			    imageView.setImageBitmap(myBitmap);
-			}*/
-			
-			String myJpgPath = JSONdata.ExperimentsThumb.get(j).get(position);
-			Log.d("yosjdskdjskjdksk",myJpgPath);
-	        BitmapFactory.Options options = new BitmapFactory.Options();
-	        options.inSampleSize = 2;
-	        Bitmap bm = BitmapFactory.decodeFile(myJpgPath, options);
-	        imageView.setImageBitmap(bm); 
+
+			}
 		}
 	    
 	    //imageView.setImageResource(R.drawable.ic_launcher);
