@@ -22,12 +22,10 @@
 <fullyQualifiedTypeName name="com.virtualis.all.Splash"/>
 <fullyQualifiedTypeName name="com.virtualis.all.ChooseExperiment"/>
 <fullyQualifiedTypeName name="com.virtualis.all.JSONdata"/>
-<fullyQualifiedTypeName name="android.util.Log"/>
 <fullyQualifiedTypeName name="com.virtualis.exp.quiz.QuizPreStart"/>
 <fullyQualifiedTypeName name="java.lang.InternalError"/>
 <fullyQualifiedTypeName name="android.widget.Button"/>
 <fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
-<fullyQualifiedTypeName name="android.media.MediaPlayer.OnErrorListener"/>
 <fullyQualifiedTypeName name="com.virtualis.exp.Videos"/>
 <fullyQualifiedTypeName name="com.virtualis.exp.Simulation"/>
 <fullyQualifiedTypeName name="android.widget.TextView"/>
@@ -36,7 +34,6 @@
 <fullyQualifiedTypeName name="com.virtualis.R.drawable"/>
 <fullyQualifiedTypeName name="android.R.drawable"/>
 <fullyQualifiedTypeName name="com.virtualis.R.id"/>
-<fullyQualifiedTypeName name="com.virtualis.Global"/>
 <fullyQualifiedTypeName name="com.virtualis.exp.quiz.QuizStart"/>
 <fullyQualifiedTypeName name="com.virtualis.exp.ShowExp"/>
 <fullyQualifiedTypeName name="com.virtualis.all.Splash.JsonDownload"/>
@@ -46,4 +43,9 @@
 <fullyQualifiedTypeName name="android.R.layout"/>
 <fullyQualifiedTypeName name="com.virtualis.R"/>
 <fullyQualifiedTypeName name="com.virtualis.all.MyAdapter"/>
+<fullyQualifiedTypeName name="android.graphics.Bitmap"/>
+<fullyQualifiedTypeName name="android.graphics.BitmapFactory"/>
+<fullyQualifiedTypeName name="com.virtualis.Global"/>
+<fullyQualifiedTypeName name="android.media.MediaPlayer.OnErrorListener"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
 </qualifiedTypeNameHistroy>

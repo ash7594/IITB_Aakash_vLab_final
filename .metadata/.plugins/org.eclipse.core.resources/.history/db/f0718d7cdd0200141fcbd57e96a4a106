@@ -17,4 +17,5 @@ public interface Global {
 			+ File.separator + PACKAGE
 			+ File.separator;
 	
+	
 }

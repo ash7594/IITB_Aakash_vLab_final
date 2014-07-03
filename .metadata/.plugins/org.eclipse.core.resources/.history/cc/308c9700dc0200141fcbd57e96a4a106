@@ -69,14 +69,11 @@ public class QuizPreStart extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.one_quiz_pre_start);
 		
-		view_mode = getIntent().getStringExtra("view_mode");
 		if(view_mode.equals("online")){
 			online_url = getIntent().getStringExtra("offline_url");
 			new HttpAsyncTask().execute(online_url);
 		}
 		else {
-			offline_url = getIntent().getStringExtra("offline_url");
-			Log.d("quiz",offline_url);
 			gift_content = readFile(offline_url);
 			gift_content = gift_content.replaceAll("\\/\\/.*", "");
 			
