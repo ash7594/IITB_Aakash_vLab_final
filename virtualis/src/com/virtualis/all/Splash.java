@@ -45,7 +45,7 @@ import com.virtualis.R;
 @SuppressWarnings("unused")
 
 public class Splash extends Activity implements Global{
-
+	
 	GetConf gf;
 	Button settings,save_btn,cancel_btn,about_btn,ok_btn,offline_btn,online_btn;
 	Dialog settingsDialog,getStarted;
@@ -63,7 +63,8 @@ public class Splash extends Activity implements Global{
 	JSONObject classSubList = null;
 	
 	int count = 0,subcount = 0;
-	String url = "http://10.105.14.13/newAakashSiteMergeUpload/generateJSON.php?cls=";
+	private String testIP = "10.105.43.83";
+	String url = "http://"+testIP+"/newAakashSiteMergeUpload/generateJSON.php?cls=";
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {

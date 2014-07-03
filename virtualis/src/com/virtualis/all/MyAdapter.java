@@ -38,12 +38,13 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 	private Context context;
 	private ArrayList<String> values;
 	static public int j = -1;
+	private static String testIP = "10.105.43.83";
 	int SubPosition = 0;
 	JSONArray json = null;
 	private JSONObject thisExp;
 	@SuppressWarnings("unused")
 	private String dataSend = "";
-	private static String url = "http://10.105.14.13/newAakashSiteMergeUpload/generateJSON2.php?cls=" + JSONdata.StudentClass + "&sname=";
+	private static String url = "http://"+testIP+"/newAakashSiteMergeUpload/generateJSON2.php?cls=" + JSONdata.StudentClass + "&sname=";
 	private static String url2 = "";
 	private JSONArray vidList = null;
 	private JSONObject vid = null;
@@ -99,7 +100,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 	    URL myUrl;
 	    InputStream inputStream = null;
 		try {
-			myUrl = new URL("http://10.105.14.13/newAakashSiteMergeUpload/assets/img/"+JSONdata.ExperimentsThumb.get(j).get(position));
+			myUrl = new URL("http://"+testIP+"/newAakashSiteMergeUpload/assets/img/"+JSONdata.ExperimentsThumb.get(j).get(position));
 			inputStream = (InputStream)myUrl.getContent();
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
@@ -361,9 +362,9 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 					dataSend += "exp_name: " + values.get(position) + "\n";
 					intent.putExtra("exp_no", JSONdata.ExperimentsNum.get(j).get(position));
 					dataSend += "exp_no: " + JSONdata.ExperimentsNum.get(j).get(position) + "\n";
-					intent.putExtra("theory_url", "http://10.105.14.13/newAakashSiteMergeUpload/"+ExpTheory);
+					intent.putExtra("theory_url", "http://"+testIP+"/newAakashSiteMergeUpload/"+ExpTheory);
 					dataSend += "theory: " + ExpTheory + "\n";
-					intent.putExtra("procedure_url", "http://10.105.14.13/newAakashSiteMergeUpload/"+ExpProcedure);
+					intent.putExtra("procedure_url", "http://"+testIP+"/newAakashSiteMergeUpload/"+ExpProcedure);
 					dataSend += "procedure: " + ExpProcedure  + "\n";
 					intent.putExtra("exp_desc", JSONdata.ExperimentsDesc.get(j).get(position));
 					dataSend += "description: " + ExpDescription + "\n";
@@ -373,7 +374,7 @@ public class MyAdapter extends ArrayAdapter<String> implements Global{
 					dataSend += "simulation: " + ExpSimulation + "\n";
 					intent.putExtra("quiz_url", ExpQuiz);
 					dataSend += "quiz: " + ExpQuiz + "\n";
-					intent.putExtra("resource_url", "http://10.105.14.13/newAakashSiteMergeUpload/"+ExpResource);
+					intent.putExtra("resource_url", "http://"+testIP+"/newAakashSiteMergeUpload/"+ExpResource);
 					dataSend += "resource: " + ExpResource + "\n";
 					intent.putExtra("video_urls", allVideos);
 					dataSend += "video: " + allVideos;

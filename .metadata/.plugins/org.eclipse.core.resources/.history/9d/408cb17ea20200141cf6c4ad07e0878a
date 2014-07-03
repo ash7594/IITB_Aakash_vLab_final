@@ -51,16 +51,19 @@ public class Splash extends Activity implements Global{
 	Dialog settingsDialog,getStarted;
 	Spinner spinner;
 	RadioGroup rg;
-	ProgressDialog pDialog;
+	ProgressDialog pDialog,expDownload;
 	Activity spl;
 	File ConfFile;
 	CheckBox cb_dont;
+	
+	int error_flag = 0;
+	String error_msg = "Error Msg";
 	
 	JSONArray json = null, json1 = null;
 	JSONObject classSubList = null;
 	
 	int count = 0,subcount = 0;
-	String url = "http://www.cse.iitb.ac.in/~ashutosh14/file2.json";
+	String url = "http://10.105.14.13/newAakashSiteMergeUpload/generateJSON.php?cls=";
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,7 @@ public class Splash extends Activity implements Global{
         
 		try {
 			gf = new GetConf();
+			url += gf.getClsNo();
 			//url = gf.getExpList_Link();
 			//Log.d("URL - given",url);
 			
@@ -245,7 +249,16 @@ public class Splash extends Activity implements Global{
 				@Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
-					parseOnline();
+					expDownload = new ProgressDialog(spl);
+		    		expDownload.setMessage("Downloading Experiments please wait..");
+		    		expDownload.setIndeterminate(false);
+		    		expDownload.setMax(100);
+		    		expDownload.setCancelable(false);
+		    		error_flag = 0;
+		    		error_msg = "";
+		        	new JsonDownload().execute("online");
+		        	Log.d("waiting to downloading exp","..........");
+					
 				}
 			});
 			
@@ -256,7 +269,16 @@ public class Splash extends Activity implements Global{
 				@Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
-					parseOffline();
+					expDownload = new ProgressDialog(spl);
+		    		expDownload.setMessage("Loading Experiments please wait..");
+		    		expDownload.setIndeterminate(false);
+		    		expDownload.setMax(100);
+		    		expDownload.setCancelable(false);
+		    		error_flag = 0;
+		    		error_msg = "";
+		        	new JsonDownload().execute("offline");
+		        	Log.d("waiting to downloading exp","..........");
+					//parseOffline();
 				}
 			});
 			
@@ -278,11 +300,13 @@ public class Splash extends Activity implements Global{
 		json = jParser.getJSONFromUrl(url);
 		//Log.d("jsong-received",json.toString());
 		if(json == null) {
-			Context context = getApplicationContext();
+			Context context = spl;
 			CharSequence text = "No Internet Connection";
 			int duration = Toast.LENGTH_SHORT;
 
-			Toast.makeText(context, text, duration).show();
+			//Toast.makeText(context, text, duration).show();
+			error_flag = 1;
+			error_msg = "No Internet Connection";
 			
 		} else {
 		
@@ -346,7 +370,7 @@ public class Splash extends Activity implements Global{
 		JSONdata.fullOffline = 0;
 		
 		JSONdata.fullOffline = 1;
-		JSONdata.setStudentClass("9");
+		JSONdata.setStudentClass(gf.getClsNo());
 		String pathAppend = BASEDIR + "ExPdaTA/" + JSONdata.StudentClass + "/";
 		String pathAppend1 = "";
 		String pathAppend2 = "";
@@ -356,33 +380,34 @@ public class Splash extends Activity implements Global{
 		Log.d("count no of files ",""+count);
 
 		if(count == 0 ){
-			Toast.makeText(getApplicationContext(), "No offline Experiments Found", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(spl, "No offline Experiments Found", Toast.LENGTH_SHORT).show();
+			error_flag = 1;
+			error_msg = "No offline Exps found";
 		}
 		else {
 			File extStore = Environment.getExternalStorageDirectory();
 			File myFile1 = new File(pathAppend);
 			
 			File list1[] = myFile1.listFiles();
-			
+			int k = 0;
 			for(int i=0; i<list1.length; i++) {
 				
-				
+				subcount = 0;
+				getFile(pathAppend + list1[i].getName()+File.separator, "subject");
 				Log.d("subject",list1[i].getName()+File.separator);
 				Log.d("subcount",""+subcount);
+				
 				if(subcount == 0){
 					continue;
 				}
 				
-				pathAppend1 = JSONdata.Subjects.get(i) + "/";
-				subcount = 0;
-				getFile(pathAppend + pathAppend1, "subject");
+				pathAppend1 = list1[i].getName() + "/";
 				File myFile2 = new File(pathAppend + pathAppend1);
-				
 				File list2[] = myFile2.listFiles();
 				JSONdata.setSubject(list1[i].getName());
 				for(int j=0; j<list2.length; j++) {
 					
-					JSONdata.setExperimentNum(i,list2[j].getName());
+					JSONdata.setExperimentNum(k,list2[j].getName());
 					pathAppend2 = list2[j].getName() + "/expData.json";
 					
 					/*JSONParser jParser = new JSONParser(); 
@@ -506,13 +531,13 @@ public class Splash extends Activity implements Global{
 					for(;jString.charAt(var)!='"';var++)
 						exp_quiz += jString.charAt(var);
 					
-					JSONdata.setExperimentHead(i,exp_name);
-					JSONdata.setExperimentDesc(i,exp_desc);
-					JSONdata.setExperimentThumb(i,exp_thumb);
+					JSONdata.setExperimentHead(k,exp_name);
+					JSONdata.setExperimentDesc(k,exp_desc);
+					JSONdata.setExperimentThumb(k,exp_thumb);
 					
 				}
 				
-				
+				k++;
 			}
 			
 			moveOffline();
@@ -588,6 +613,30 @@ public class Splash extends Activity implements Global{
 		}
 	}
 	
+	private class JsonDownload extends AsyncTask<String, Void, String> {
+		
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			expDownload.show();
+		}
+		
+		@Override
+		protected String doInBackground(String... urls) {
+			if(urls[0].equals("online")) parseOnline();
+			if(urls[0].equals("offline")) parseOffline();
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			expDownload.dismiss();
+			if(error_flag == 1){
+				Toast.makeText(getApplicationContext(), error_msg, Toast.LENGTH_LONG).show();
+			}
+			
+		}
+	}
 	
 	
 	
